@@ -1,32 +1,32 @@
+# Hexlet Editor
+
 [![On Push](https://github.com/hexlet/hexlet-editor/workflows/On%20Push/badge.svg?branch=master)](https://github.com/hexlet/hexlet-editor/actions)
 
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet)
+## System requirements
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet).
-
-See most active contributers on [hexlet-friends](https://friends.hexlet.io/).
-
-##
-
+* node >= 12
 ## Installation
 
-node >= 12
-
 ```bash
-$ make install
+make install
 ```
 
 ## Running the app
 
 ```bash
-$ make start
+make start
 
 localhost:3000
 ```
 
-## Как помочь
+## How to help
 
-Посмотреть список issues, выбрать интересную задачу, отписаться в issue о желании поработать над задачей.
+Look at the list of issues, choose an interesting task, write to the issue to say you would like to work on the task.
 
-Общение - в канале `#hexlet-volunteers`
+---
+
+[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor)
+
+This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet](https://hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor).
+
+See most active contributors on [hexlet-friends](https://friends.hexlet.io/).
