@@ -1,5 +1,7 @@
 import React from 'react';
-import { Editor, Terminal, Button } from './components';
+import { Editor } from './components/Editor/index.jsx';
+import { Button } from './components/Button/index.jsx';
+import { Terminal } from './components/Terminal/index.jsx';
 
 export const App = () => (
   <main className="container-fluid my-5">

@@ -8,10 +8,10 @@ export const rootReducer = combineReducers({
   terminal: terminalReducer,
 });
 
-export const setupState = (gon) => (dispatch) => {
-  // FIXME: гон сейчас пустой, поэтому фолбек на джаваскрипт
-  dispatch(editorActions.changeLanguage(gon.language || 'javascript'));
-};
+// export const setupState = (gon) => (dispatch) => {
+// FIXME: гон сейчас пустой, поэтому фолбек на джаваскрипт
+//  dispatch(editorActions.changeLanguage(gon.language || 'javascript'));
+// };
 
 export const actions = {
   ...editorActions,
