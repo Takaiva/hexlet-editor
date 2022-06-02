@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import XTerm from 'react-xterm';
 import 'xterm/css/xterm.css';
 
-import { useTerminal } from './hooks';
+import { useTerminal } from './hooks.js';
 
 const runTerminal = (xterm, output) => {
   const term = xterm.getTerminal();
