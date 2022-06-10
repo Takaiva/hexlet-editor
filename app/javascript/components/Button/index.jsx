@@ -5,13 +5,15 @@ export const Button = memo(() => {
   const { onClick, disabled } = useButton();
 
   return (
-    <button
-      type="button"
-      className="btn btn-primary"
-      disabled={disabled}
-      onClick={onClick}
-    >
-      Run
-    </button>
+    <div className="text-center">
+      <button
+        type="button"
+        className="btn btn-success btn-lg"
+        disabled={disabled}
+        onClick={onClick}
+      >
+        Run
+      </button>
+    </div>
   );
 });
