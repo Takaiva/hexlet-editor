@@ -2,15 +2,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const slice = createSlice({
-  name: 'editor',
+  name: 'languages',
   initialState: {
-    error: false,
-    isFetching: false,
-    code: '// happy hacking!\n',
+    supportedLanguages: ['javascript', 'php', 'python'],
+    currentLanguage: 'javascript',
   },
   reducers: {
-    updateCode(state, { payload }) {
-      state.code = payload;
+    changeLanguage(state, { payload }) {
+      state.currentLanguage = payload;
     },
   },
 });
@@ -18,3 +17,4 @@ const slice = createSlice({
 export const { actions } = slice;
 
 export default slice.reducer;
+

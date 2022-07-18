@@ -24,7 +24,7 @@ export const useEditor = () => {
   };
   const { code, language } = useSelector((state) => ({
     code: state.editor.code,
-    language: state.editor.language,
+    language: state.languages.currentLanguage,
   }));
 
   return {
