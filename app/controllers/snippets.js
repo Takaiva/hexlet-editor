@@ -20,9 +20,7 @@ export const show = async (request, response, { db }) => {
 export const create = async (request, response, { router, db }) => {
   const snippet = new Snippet(request.body.snippet);
   if (snippet instanceof Object) {
-    await db.connection
-      .manager
-      .save(snippet);
+    await db.connection.manager.save(snippet);
     response.redirectTo(router.routePath('snippet', snippet.id));
   }
 };
