@@ -22,7 +22,9 @@ export const runCode = createAsyncThunk(
   },
   {
     condition: (code, { getState }) => {
-      const { terminal: { codeExecutionState } } = getState();
+      const {
+        terminal: { codeExecutionState },
+      } = getState();
       return codeExecutionState !== 'executing';
     },
   },
@@ -34,8 +36,7 @@ const slice = createSlice({
     codeExecutionState: 'idle',
     output: '',
   },
-  reducers: {
-  },
+  reducers: {},
   extraReducers: {
     [runCode.pending]: (state) => {
       state.codeExecutionState = 'executing';

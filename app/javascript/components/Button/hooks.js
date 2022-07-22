@@ -11,8 +11,10 @@ export const useButton = () => {
     codeExecutionState: terminal.codeExecutionState,
     code: editor.code,
   }));
-  const onClick = useCallback(() => dispatch(runCode(code)),
-    [dispatch, runCode, code]);
+  const onClick = useCallback(
+    () => dispatch(runCode(code)),
+    [dispatch, runCode, code],
+  );
   const disabled = codeExecutionState === 'executing';
 
   return {
