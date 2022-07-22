@@ -7,12 +7,12 @@ export const Select = () => {
     language,
     selectedLanguage,
     selectLanguage,
-    ChangeLanguage,
+    changeLanguage,
   } = useSelect();
 
   return (
     <div className="container">
-      <form onSubmit={(e) => ChangeLanguage(e, selectedLanguage)}>
+      <form onSubmit={(e) => changeLanguage(e, selectedLanguage)}>
         <div className="form-group d-flex flex-column align-items-center">
           <label htmlFor="language" className="h4 font-italic font-weight-lighter">
             Choose language

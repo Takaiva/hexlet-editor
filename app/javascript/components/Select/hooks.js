@@ -5,10 +5,7 @@ import { actions } from '../../slices';
 export const useSelect = () => {
   const dispatch = useDispatch();
 
-  const {
-    languages,
-    language,
-  } = useSelector((state) => ({
+  const { languages, language } = useSelector((state) => ({
     languages: state.languages.supportedLanguages,
     language: state.languages.currentLanguage,
   }));
@@ -19,9 +16,9 @@ export const useSelect = () => {
     setSelectedLanguage(e.target.value);
   };
 
-  const ChangeLanguage = (e, language) => {
+  const changeLanguage = (e, chosenLanguage) => {
     e.preventDefault();
-    dispatch(actions.changeLanguage(language));
+    dispatch(actions.changeLanguage(chosenLanguage));
   };
 
   return {
@@ -29,6 +26,6 @@ export const useSelect = () => {
     language,
     selectedLanguage,
     selectLanguage,
-    ChangeLanguage,
+    changeLanguage,
   };
 };

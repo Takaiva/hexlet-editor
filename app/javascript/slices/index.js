@@ -1,7 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import editorReducer, { actions as editorActions } from './editorSlice.js';
-import terminalReducer, { actions as terminalActions, runCode } from './terminalSlice.js';
-import languagesReducer, { actions as languagesActions } from './languagesSlice.js';
+import terminalReducer, {
+  actions as terminalActions,
+  runCode,
+} from './terminalSlice.js';
+import languagesReducer, {
+  actions as languagesActions,
+} from './languagesSlice.js';
 
 export const rootReducer = combineReducers({
   editor: editorReducer,
