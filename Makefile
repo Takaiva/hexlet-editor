@@ -2,7 +2,11 @@ install:
 	npm install
 
 start:
-	npx nodos server
+	npm run build
+	npm run start
+
+front-dev:
+	npm run serve
 
 build:
 	npm run build

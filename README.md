@@ -15,9 +15,17 @@ make install
 
 ```bash
 make start
+```
 
 localhost:3000
+
+## Develop frontend
+
+```bash
+make front-dev
 ```
+
+localhost:8080
 
 ## How to help
 
