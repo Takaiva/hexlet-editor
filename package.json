@@ -6,8 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "webpack --mode=production --node-env=production",
+    "build": "nest build",
+    "prebuild": "webpack --mode=production --node-env=production",
     "format": "prettier --write \\\"src/**/*.ts\\\" \\\"__test__/**/*.ts\\\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
