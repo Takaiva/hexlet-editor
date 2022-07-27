@@ -6,7 +6,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
@@ -17,7 +16,7 @@ module.exports = {
   entry: './app/javascript/application.js',
   output: {
     publicPath: '/',
-    path: path.resolve(__dirname, 'public/assets'),
+    path: path.resolve(__dirname, 'assets'),
   },
   devtool: isProd ? false : 'eval-source-map',
   resolve: {
@@ -83,9 +82,6 @@ module.exports = {
   plugins: [
     new MonacoWebpackPlugin(),
     new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-    }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
