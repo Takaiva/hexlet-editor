@@ -4,10 +4,14 @@ import terminalReducer, {
   actions as terminalActions,
   runCode,
 } from './terminalSlice.js';
+import languagesReducer, {
+  actions as languagesActions,
+} from './languagesSlice.js';
 
 export const rootReducer = combineReducers({
   editor: editorReducer,
   terminal: terminalReducer,
+  languages: languagesReducer,
 });
 
 // export const setupState = (gon) => (dispatch) => {
@@ -18,5 +22,6 @@ export const rootReducer = combineReducers({
 export const actions = {
   ...editorActions,
   ...terminalActions,
+  ...languagesActions,
   runCode,
 };

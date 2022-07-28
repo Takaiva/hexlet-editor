@@ -19,6 +19,6 @@ jobs:
       - name: Run lint
         run: |
           make lint
-      - name: Run __tests__
+      - name: Run tests
         run: |
           make test
