@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
@@ -5,6 +6,6 @@ export class AppController {
   @Get()
   @Render('default')
   root() {
-    return;
+    return { title: 'Hexlet Editor' };
   }
 }
