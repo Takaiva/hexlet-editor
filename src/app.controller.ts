@@ -1,13 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+/* eslint-disable class-methods-use-this */
+import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
 export class AppController {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Render('default')
+  root() {
+    return { title: 'Hexlet Editor' };
   }
 }

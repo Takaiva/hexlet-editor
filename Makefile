@@ -2,7 +2,7 @@ install:
 	npm install
 
 start:
-	npm run build
+	npm run prebuild
 	npm run start
 
 front-dev:
