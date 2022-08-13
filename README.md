@@ -19,6 +19,11 @@ make start
 
 localhost:3000
 
+## Develop
+```bash
+make start-dev
+```
+
 ## Develop frontend
 
 ```bash
