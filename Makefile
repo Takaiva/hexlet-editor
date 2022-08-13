@@ -1,6 +1,9 @@
 install:
 	npm install
 
+start-dev:
+	npm run start:dev
+
 start:
 	npm run prebuild
 	npm run start
