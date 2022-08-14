@@ -19,7 +19,7 @@ make start
 
 localhost:3000
 
-## Develop
+## Develop hot-reload
 ```bash
 make start-dev
 ```
