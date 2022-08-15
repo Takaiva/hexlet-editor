@@ -8,4 +8,10 @@ export class AppController {
   root() {
     return { title: 'Hexlet Editor' };
   }
+
+  @Get('about')
+  @Render('about-page')
+  getAboutPage(): void {
+    return;
+  }
 }
