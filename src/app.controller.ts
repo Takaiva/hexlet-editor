@@ -11,7 +11,7 @@ export class AppController {
 
   @Get('about')
   @Render('about-page')
-  getAboutPage(): void {
-    return;
+  getAboutPage() {
+    return { title: 'About' };
   }
 }
