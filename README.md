@@ -2,6 +2,16 @@
 
 [![On Push](https://github.com/hexlet/hexlet-editor/workflows/On%20Push/badge.svg?branch=master)](https://github.com/hexlet/hexlet-editor/actions)
 
+## About
+
+Hexlet-editor is an environment for writing and executing code that will be actively used on all Hexlet platforms. The closest counterpart is the repl.it service. The backend is developed in NestJS and TypeScript, the frontend uses React.
+
+Tasks:
+
+* Participation in service development
+
+Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community](https://slack-ru.hexlet.io/).
+
 ## System requirements
 
 * node >= 12
