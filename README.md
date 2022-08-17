@@ -29,6 +29,11 @@ make start
 
 localhost:3000
 
+## Develop hot-reload
+```bash
+make start-dev
+```
+
 ## Develop frontend
 
 ```bash
