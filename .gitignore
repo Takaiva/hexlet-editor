@@ -2,6 +2,7 @@
 /assets
 /node_modules
 /dist
+/.vscode
 
 # Logs
 logs
