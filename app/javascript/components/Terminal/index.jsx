@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import React, { useEffect, useRef } from 'react';
 import { XTerm } from 'xterm-for-react';
 import 'xterm/css/xterm.css';
@@ -10,7 +11,6 @@ const runTerminal = (xterm, output) => {
 
   term.write(`\r\n${shellprompt}${output}`);
 };
-
 
 export const Terminal = () => {
   const xTermRef = useRef(null);
