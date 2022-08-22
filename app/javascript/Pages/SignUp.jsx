@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useTransition } from "react";
 import * as yup from 'react-yup';
 import { useFormik } from 'formik';
 import {
@@ -15,20 +15,21 @@ import {
 } from 'react-bootstrap';
 
 const SignUp = () => {
+  const { t } = useTransition();
   const signUpValidation = yup.object().shape({
     name: yup
       .string()
-      .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
+      .matches(/^[A-Za-z ]*$/, t('signUp.nameValidation'))
       .trim()
       .typeError()
       .required(),
-    email: yup.string().email('Incorrect email'),
+    email: yup.string().email(t('signUp.emailValidation')),
     password: yup
       .string()
       .trim()
       .min(8)
       .max(30)
-      .typeError('The password must be 8 to 30 characters long')
+      .typeError(t('signUp.passwordLenght'))
       .required(),
     confirmPassword: yup
       .string()
@@ -57,12 +58,12 @@ const SignUp = () => {
           <div className="pb-lg-5">
             <Card className="shadow-sm">
               <Card.Body>
-                <h1 className="mb-4 fw-light">Регистрация</h1>
+                <h1 className="mb-4 fw-light">{t('signUp.pageHeader')}</h1>
                 <div className="pt-lg-3">
                   <Form onSubmit={handleSubmit}>
                     <div className="mb-2 email required">
                       <FormLabel htmlFor="email">
-                        Электронная почта <span>*</span>
+                        {t('signUp.email')} <span>*</span>
                       </FormLabel>
                       <FormControl
                         type="text"
@@ -75,7 +76,7 @@ const SignUp = () => {
                       />
                     </div>
                     <div className="mb-2">
-                      <FormLabel htmlFor="name">Имя</FormLabel>
+                      <FormLabel htmlFor="name">{t('signUp.username')}</FormLabel>
                       <FormControl
                         type="text"
                         autofocus="autofocus"
@@ -87,7 +88,7 @@ const SignUp = () => {
                       />
                     </div>
                     <div className="mb-2">
-                      <FormLabel htmlFor="password">Пароль</FormLabel>
+                      <FormLabel htmlFor="password">{t('signUp.userPassword')}</FormLabel>
                       <FormControl
                         type="password"
                         autofocus="autofocus"
@@ -100,7 +101,7 @@ const SignUp = () => {
                     </div>
                     <div className="mb-2">
                       <FormLabel htmlFor="confirmPassword">
-                        Подтверждение пароля
+                        {t('signUp.confirmUserPassword')}
                       </FormLabel>
                       <FormControl
                         autofocus="autofocus"
@@ -111,7 +112,7 @@ const SignUp = () => {
                         value={values.confirmPassword}
                       />
                     </div>
-                    <Button type="submit">Зарегистрироваться</Button>
+                    <Button type="submit">{t('signUp.register')}</Button>
                   </Form>
                 </div>
               </Card.Body>
