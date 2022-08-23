@@ -1,6 +1,6 @@
 # Hexlet Editor
 
-[![On Push](https://github.com/hexlet/hexlet-editor/workflows/On%20Push/badge.svg?branch=master)](https://github.com/hexlet/hexlet-editor/actions)
+[![On Push](https://github.com/hexlet/hexlet-editor/workflows/On%20Push/badge.svg?branch=main)](https://github.com/hexlet/hexlet-editor/actions)
 
 ## About
 
