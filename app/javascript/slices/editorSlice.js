@@ -6,7 +6,7 @@ const slice = createSlice({
   initialState: {
     error: false,
     isFetching: false,
-    code: '// happy hacking!\n',
+    code: '// Write your code in JS\n',
   },
   reducers: {
     updateCode(state, { payload }) {
