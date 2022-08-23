@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-console */
 import React from 'react';
