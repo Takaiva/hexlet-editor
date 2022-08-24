@@ -3,30 +3,26 @@ import { File } from './File';
 import { Directory } from './Directory';
 
 const Documents = ({ fileTreeData }) => {
-  try {
-    const normalizedData = Array.isArray(fileTreeData)
-      ? fileTreeData
-      : Array(fileTreeData);
+  const normalizedData = Array.isArray(fileTreeData)
+    ? fileTreeData
+    : Array(fileTreeData);
 
-    return normalizedData.map((file) => {
-      if (file.type === 'file') {
-        return <File key={file.name} type={file.type} name={file.name} />;
-      }
-      return (
-        <Directory
-          key={file.name}
-          type={file.type}
-          name={file.name}
-          documentChildren={file.children}
-          renderDocumentChildren={(child) => (
-            <Documents key={child.name} fileTreeData={child} />
-          )}
-        />
-      );
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  return normalizedData.map((file) => {
+    if (file.type === 'file') {
+      return <File key={file.name} type={file.type} name={file.name} />;
+    }
+    return (
+      <Directory
+        key={file.name}
+        type={file.type}
+        name={file.name}
+        documentChildren={file.children}
+        renderDocumentChildren={(child) => (
+          <Documents key={child.name} fileTreeData={child} />
+        )}
+      />
+    );
+  });
 };
 
 export const FileTree = ({ fileTreeData }) => {
