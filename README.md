@@ -15,6 +15,7 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 ## System requirements
 
 * node >= 12
+* Heroku CLI
 ## Installation
 
 ```bash
@@ -26,21 +27,13 @@ make install
 ```bash
 make start
 ```
+http://localhost:3000
 
-localhost:3000
-
-## Develop hot-reload
+## Running the app in development mode
 ```bash
 make start-dev
 ```
-
-## Develop frontend
-
-```bash
-make front-dev
-```
-
-localhost:8080
+http://localhost:5000
 
 ## How to help
 
