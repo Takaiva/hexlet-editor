@@ -2,20 +2,20 @@ import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import i18n from 'i18next';
+import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 // import gon from 'gon';
 
 import { rootReducer } from './slices';
-import resourses from './locales/locales.js';
+import resources from './locales/locales.js';
 import { App } from './App.jsx';
 
 export default async () => {
-  const defaultLanguage = 'ru';
-  await i18n.use(initReactI18next).init({
-    lng: defaultLanguage,
+  const defaultlanguage = 'ru';
+  await i18next.use(initReactI18next).init({
+    lng: defaultlanguage,
     debug: false,
-    resourses,
+    resources,
   });
   const store = configureStore({
     reducer: rootReducer,

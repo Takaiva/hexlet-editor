@@ -1,3 +1,4 @@
-import ruLocales from './ru';
+import ru from './ru.js';
 
-export default { ruLocales };
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { ru };

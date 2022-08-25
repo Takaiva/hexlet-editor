@@ -1,7 +1,7 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-console */
 import React from 'react';
-import * as yup from 'react-yup';
+import * as yup from 'yup';
 import { useFormik } from 'formik';
 import {
   Button,
@@ -51,7 +51,7 @@ export const SignUp = () => {
       console.log(values);
     },
   });
-  const { handleBlur, handleChange, handleSubmit, errors, values } = formik;
+  const { handleBlur, handleChange, handleSubmit, values } = formik;
   return (
     <Container>
       <Row>
@@ -68,7 +68,7 @@ export const SignUp = () => {
                       </FormLabel>
                       <FormControl
                         type="text"
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="email"
                         id="email"
                         onBlur={handleBlur}
@@ -82,7 +82,7 @@ export const SignUp = () => {
                       </FormLabel>
                       <FormControl
                         type="text"
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="name"
                         id="name"
                         onBlur={handleBlur}
@@ -96,7 +96,7 @@ export const SignUp = () => {
                       </FormLabel>
                       <FormControl
                         type="password"
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="password"
                         id="password"
                         onBlur={handleBlur}
@@ -109,7 +109,7 @@ export const SignUp = () => {
                         {t('signUp.confirmUserPassword')}
                       </FormLabel>
                       <FormControl
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="confirmPassword"
                         id="confirmPassword"
                         onBlur={handleBlur}

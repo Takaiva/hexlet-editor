@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import React from 'react';
 import { Editor } from './components/Editor/index.jsx';
 import { Button } from './components/Button/index.jsx';
