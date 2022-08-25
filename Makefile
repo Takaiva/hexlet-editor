@@ -1,9 +1,11 @@
 install:
 	npm install
 
-start-dev:
-	npm run prebuild
+start-backend:
 	npm run start:dev
+
+start-dev:
+	heroku local -f Procfile.development
 
 start:
 	npm run prebuild
@@ -26,3 +28,6 @@ heroku-deploy:
 
 heroku-logs:
 	heroku logs
+
+start-frontend:
+	npx webpack --watch --progress
