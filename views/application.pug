@@ -13,17 +13,17 @@ html
     script.
       var gon = !{JSON.stringify(gon || {})};
   body
-    header     
+    header
       nav.navbar.navbar-expand-md.navbar-light.bg-white.shadow-sm.border-bottom
         .container-fluid
           .d-flex.justify-content-start
-            button(style={"border": "0", "background-color": "white"} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasStart" aria-controls="offcanvasStart")
-              span.navbar-toggler-icon 
+            button.border-0.bg-white(type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasStart" aria-controls="offcanvasStart")
+              span.navbar-toggler-icon
             a.navbar-brand(aria-hiddesn="true" href="/") Editor
           .d-flex.justify-content-end
-            a.nav-link.px-3(href="/about") About 
+            a.nav-link.px-3(href="/about") About
             a.nav-link.px-3(href="/session/new") Sign in
-            a.nav-link.px-3(href="/u/new") Sign up  
+            a.nav-link.px-3(href="/u/new") Sign up
        
     block content
     block foot
@@ -46,14 +46,14 @@ html
 
     .offcanvas.offcanvas-start(style={"z-index": "5000", "width": "20vw"} tabindex="-1" id="offcanvasStart" aria-labelledby="offcanvasStartLabel")
             .offcanvas-header
-              h5(id="offcanvasStartLabel") Меню
+              p.h5(id="offcanvasStartLabel") Меню
               button(type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close")
             .offcanvas-body
               ul.navbar-nav.justify-content-end.flex-grow-1.pe-3
                 li.nav-item
                   a.nav-link.active(aria-current="page" href="/") Home
                 li.nav-item
-                  a.nav-link.active(aria-current="page" href="/") My repls            
+                  a.nav-link.active(aria-current="page" href="/") My repls
 
     script(src='main.js')
 
