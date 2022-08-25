@@ -1,9 +1,9 @@
 const ruLocales = {
   translation: {
     signUp: {
-      nameValidation: 'Please enter valid name',
-      emailValidation: 'Incorrect email',
-      passwordLenght: 'The password must be 8 to 30 characters long',
+      nameValidation: 'Пожалуйста введите корректное имя',
+      emailValidation: 'Неправильный email',
+      passwordLenght: 'Пароль должен содержать от 8 до 30 символов',
       pageHeader: 'Регистрация',
       email: 'Электронная почта',
       username: 'Имя',

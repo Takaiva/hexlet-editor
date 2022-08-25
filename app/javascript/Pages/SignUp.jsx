@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-console */
-import React, { useTransition } from "react";
+import React from 'react';
 import * as yup from 'react-yup';
 import { useFormik } from 'formik';
 import {
@@ -13,9 +13,10 @@ import {
   FormLabel,
   Row,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
-const SignUp = () => {
-  const { t } = useTransition();
+export const SignUp = () => {
+  const { t } = useTranslation();
   const signUpValidation = yup.object().shape({
     name: yup
       .string()
@@ -76,7 +77,9 @@ const SignUp = () => {
                       />
                     </div>
                     <div className="mb-2">
-                      <FormLabel htmlFor="name">{t('signUp.username')}</FormLabel>
+                      <FormLabel htmlFor="name">
+                        {t('signUp.username')}
+                      </FormLabel>
                       <FormControl
                         type="text"
                         autofocus="autofocus"
@@ -88,7 +91,9 @@ const SignUp = () => {
                       />
                     </div>
                     <div className="mb-2">
-                      <FormLabel htmlFor="password">{t('signUp.userPassword')}</FormLabel>
+                      <FormLabel htmlFor="password">
+                        {t('signUp.userPassword')}
+                      </FormLabel>
                       <FormControl
                         type="password"
                         autofocus="autofocus"
@@ -123,5 +128,3 @@ const SignUp = () => {
     </Container>
   );
 };
-
-export default SignUp;

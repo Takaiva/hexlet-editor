@@ -16,7 +16,7 @@ export default async () => {
     lng: defaultLanguage,
     debug: false,
     resourses,
-  })
+  });
   const store = configureStore({
     reducer: rootReducer,
   });
@@ -26,6 +26,7 @@ export default async () => {
   ReactDOM.render(
     <Provider store={store}>
       <App />
-    </Provider>
-  , rootNode);
+    </Provider>,
+    rootNode,
+  );
 };
