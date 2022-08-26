@@ -1,24 +1,28 @@
 /* eslint-disable no-console */
 /* eslint-disable react/function-component-definition */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { actions } from '../../slices';
 import { db } from './db.js';
 
 export const Repls = () => {
-  const openTerminal = () => {
-    console.log('Открывает терминал с сохраненным решением');
+  const dispatch = useDispatch();
+
+  const openTerminal = (code) => () => {
+    dispatch(actions.updateCode(code)); // далее роутинг на App
   };
 
   return (
     <Container className="m-5">
       <Row xs={1} md={2} className="g-4">
-        {db.map(({ id, title, body }) => (
+        {db.map(({ id, title, img, code }) => (
           <Col xs lg="3">
             <Card border="primary" key={id}>
               <Card.Header>{title}</Card.Header>
               <Card.Body>
-                <Card.Text>{body}</Card.Text>
-                <Button variant="primary" onClick={openTerminal}>
+                <Card.Text>{img}</Card.Text>
+                <Button variant="primary" onClick={openTerminal(code)}>
                   Open repl
                 </Button>
               </Card.Body>
