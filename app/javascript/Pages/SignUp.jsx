@@ -2,7 +2,7 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-console */
 import React from 'react';
-import * as yup from 'react-yup';
+import * as yup from 'yup';
 import { useFormik } from 'formik';
 import {
   Button,
@@ -14,22 +14,24 @@ import {
   FormLabel,
   Row,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
-const SignUp = () => {
+export const SignUp = () => {
+  const { t } = useTranslation();
   const signUpValidation = yup.object().shape({
     name: yup
       .string()
-      .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
+      .matches(/^[A-Za-z ]*$/, t('signUp.nameValidation'))
       .trim()
       .typeError()
       .required(),
-    email: yup.string().email('Incorrect email'),
+    email: yup.string().email(t('signUp.emailValidation')),
     password: yup
       .string()
       .trim()
       .min(8)
       .max(30)
-      .typeError('The password must be 8 to 30 characters long')
+      .typeError(t('signUp.passwordLenght'))
       .required(),
     confirmPassword: yup
       .string()
@@ -50,7 +52,7 @@ const SignUp = () => {
       console.log(values);
     },
   });
-  const { handleBlur, handleChange, handleSubmit, errors, values } = formik;
+  const { handleBlur, handleChange, handleSubmit, values } = formik;
   return (
     <Container>
       <Row>
@@ -58,16 +60,16 @@ const SignUp = () => {
           <div className="pb-lg-5">
             <Card className="shadow-sm">
               <Card.Body>
-                <h1 className="mb-4 fw-light">Регистрация</h1>
+                <h1 className="mb-4 fw-light">{t('signUp.pageHeader')}</h1>
                 <div className="pt-lg-3">
                   <Form onSubmit={handleSubmit}>
                     <div className="mb-2 email required">
                       <FormLabel htmlFor="email">
-                        Электронная почта <span>*</span>
+                        {t('signUp.email')} <span>*</span>
                       </FormLabel>
                       <FormControl
                         type="text"
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="email"
                         id="email"
                         onBlur={handleBlur}
@@ -76,10 +78,12 @@ const SignUp = () => {
                       />
                     </div>
                     <div className="mb-2">
-                      <FormLabel htmlFor="name">Имя</FormLabel>
+                      <FormLabel htmlFor="name">
+                        {t('signUp.username')}
+                      </FormLabel>
                       <FormControl
                         type="text"
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="name"
                         id="name"
                         onBlur={handleBlur}
@@ -88,10 +92,12 @@ const SignUp = () => {
                       />
                     </div>
                     <div className="mb-2">
-                      <FormLabel htmlFor="password">Пароль</FormLabel>
+                      <FormLabel htmlFor="password">
+                        {t('signUp.userPassword')}
+                      </FormLabel>
                       <FormControl
                         type="password"
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="password"
                         id="password"
                         onBlur={handleBlur}
@@ -101,10 +107,10 @@ const SignUp = () => {
                     </div>
                     <div className="mb-2">
                       <FormLabel htmlFor="confirmPassword">
-                        Подтверждение пароля
+                        {t('signUp.confirmUserPassword')}
                       </FormLabel>
                       <FormControl
-                        autofocus="autofocus"
+                        autoFocus="autofocus"
                         name="confirmPassword"
                         id="confirmPassword"
                         onBlur={handleBlur}
@@ -112,7 +118,7 @@ const SignUp = () => {
                         value={values.confirmPassword}
                       />
                     </div>
-                    <Button type="submit">Зарегистрироваться</Button>
+                    <Button type="submit">{t('signUp.register')}</Button>
                   </Form>
                 </div>
               </Card.Body>
@@ -123,5 +129,3 @@ const SignUp = () => {
     </Container>
   );
 };
-
-export default SignUp;
