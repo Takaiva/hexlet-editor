@@ -1,7 +1,5 @@
 export class CreateSnippetDto {
-  name: string;
-
-  author_id: number;
+  id: number;
 
   textEditor: any;
 }

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 import { actions } from '../../slices/index.js';
 
@@ -15,10 +16,17 @@ export const useButton = () => {
     () => dispatch(runCode(code)),
     [dispatch, runCode, code],
   );
+  const onSave = async () => {
+    const data = axios.post('/snippets', {
+      textEditor: code,
+    });
+    return data;
+  };
   const disabled = codeExecutionState === 'executing';
 
   return {
     onClick,
+    onSave,
     disabled,
     code,
   };

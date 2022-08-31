@@ -4,7 +4,6 @@
 import {
   Controller,
   Get,
-  Query,
   Post,
   Body,
   Put,
@@ -44,23 +43,21 @@ export class SnippetsController {
   }
 
   @Post()
-  // @UsePipes(new JoiValidationPipe(snippetSchema))
+  @UsePipes(new JoiValidationPipe(snippetSchema))
   async create(@Body() createSnippetDto: CreateSnippetDto) {
-    console.log(createSnippetDto);
     return this.snippetsService.create(createSnippetDto);
   }
 
   @Put(':id')
   update(
-    @Param('id', new ParseIntPipe()) id: string,
+    @Param('id', new ParseIntPipe()) id: number,
     @Body() updateSnippetDto: UpdateSnippetDto,
   ) {
-    console.log(updateSnippetDto);
-    return `This action updates a ${id} snippet`;
+    return this.snippetsService.update(updateSnippetDto, id);
   }
 
   @Delete(':id')
-  remove(@Param('id', new ParseIntPipe()) id: string) {
-    return `This action removes a ${id} snippet`;
+  remove(@Param('id', new ParseIntPipe()) id: number) {
+    return this.snippetsService.delete(id);
   }
 }

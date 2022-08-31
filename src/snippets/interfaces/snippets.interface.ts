@@ -1,4 +1,4 @@
 export interface Snippet {
-  name: string;
+  id: number;
   textEditor: any;
 }
