@@ -21,7 +21,7 @@ module.exports = function (options, webpack) {
       }),
       new RunScriptWebpackPlugin({
         name: options.output.filename,
-        autoRestart: true,
+        autoRestart: false,
       }),
     ],
   };
