@@ -1,53 +1,41 @@
+/* eslint-disable no-useless-constructor */
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
-import { Snippet } from './interfaces/snippets.interface';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DataSource, Repository } from 'typeorm';
+import { CreateSnippetDto } from './dto/create-snippet.dto';
+import { UpdateSnippetDto } from './dto/update-snippet.dto';
+import { Snippets } from './snippet.entity';
+// import { Snippet } from './interfaces/snippets.interface';
 
 @Injectable()
 export class SnippetsService {
-  private readonly snippets: Snippet[] = JSON.parse(
-    fs.readFileSync('./src/snippets/test/db.json', 'utf-8'),
-  );
+  constructor(
+    @InjectRepository(Snippets)
+    private snippetsRepository: Repository<Snippets>,
+  ) {}
 
-  create(snippet: Snippet) {
-    const id = this.snippets.map((snipp) => {
-      return snipp.id;
-    });
-    if (id.length === 0) {
-      id.push(0);
-    }
-    snippet.id = Math.max.apply(null, id) + 1;
-    this.snippets.push(snippet);
-    fs.writeFileSync(
-      './src/snippets/test/db.json',
-      JSON.stringify(this.snippets),
-    );
+  findOne(id: number): Promise<Snippets> {
+    return this.snippetsRepository.findOneBy({ id });
   }
 
-  update(snippet: Snippet, id: number) {
-    this.snippets.map((snipp) => {
-      if (snipp.id === id) {
-        snipp.textEditor = snippet.textEditor;
-        return snipp;
-      }
-      return snipp;
-    });
-    fs.writeFileSync(
-      './src/snippets/test/db.json',
-      JSON.stringify(this.snippets),
-    );
+  create(createSnippetDto: CreateSnippetDto): Promise<Snippets> {
+    const snippet = new Snippets();
+    snippet.code = createSnippetDto.code;
+    console.log(snippet);
+    return this.snippetsRepository.save(snippet);
   }
 
-  delete(id: number) {
-    const result = this.snippets.filter((snipp) => snipp.id !== id);
-    fs.writeFileSync('./src/snippets/test/db.json', JSON.stringify(result));
+  async update(updateSnippetDto: UpdateSnippetDto, id: number): Promise<void> {
+    await this.snippetsRepository.update(id, updateSnippetDto);
   }
 
-  findAll(): Snippet[] {
-    const all = JSON.parse(
-      fs.readFileSync('./src/snippets/test/db.json', 'utf-8'),
-    );
-    return all;
+  async delete(id: number): Promise<void> {
+    await this.snippetsRepository.delete(id);
+  }
+
+  findAll(): Promise<Snippets[]> {
+    return this.snippetsRepository.find();
   }
 }

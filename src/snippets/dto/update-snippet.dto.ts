@@ -1,5 +1,5 @@
 export class UpdateSnippetDto {
-  id: number;
+  name: string;
 
-  textEditor: any;
+  code: any;
 }

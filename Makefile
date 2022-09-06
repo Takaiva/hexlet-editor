@@ -1,5 +1,9 @@
 install:
 	npm install
+	npm run typeorm -- migration:run -d src/data-source.ts
+
+drop-data:
+    npm run typeorm -- migration:revert -d src/data-source.ts
 
 start-backend:
 	npm run start:dev

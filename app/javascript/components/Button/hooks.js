@@ -18,7 +18,7 @@ export const useButton = () => {
   );
   const onSave = async () => {
     const data = axios.post('/snippets', {
-      textEditor: code,
+      code,
     });
     return data;
   };
