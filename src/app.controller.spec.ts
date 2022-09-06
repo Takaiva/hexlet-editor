@@ -13,10 +13,4 @@ describe('AppController', () => {
 
     appController = app.get<AppController>(AppController);
   });
-
-  describe('root', () => {
-    it('should return title', () => {
-      expect(appController.root()).toEqual({ title: 'Hexlet Editor' });
-    });
-  });
 });
