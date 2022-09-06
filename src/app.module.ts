@@ -5,6 +5,8 @@ import {
   Module,
   NestModule,
 } from '@nestjs/common';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './snippets/common/logger.middleware';
@@ -13,7 +15,9 @@ import { SnippetsModule } from './snippets/snippets.module';
 import { SnippetsService } from './snippets/snippets.service';
 
 @Module({
-  imports: [SnippetsModule],
+  imports: [ServeStaticModule.forRoot({
+    rootPath: join(__dirname, '..', 'app/assets')
+  }), SnippetsModule],
   controllers: [AppController, SnippetsController],
   providers: [AppService, SnippetsService],
 })
