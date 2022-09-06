@@ -1,5 +1,5 @@
 import React from 'react';
-import { Editor } from './components/Editor/index.jsx';
+import { MonacoEditor } from './components/Editor/index.jsx';
 import { Button } from './components/Button/index.jsx';
 import { Terminal } from './components/Terminal/index.jsx';
 
@@ -12,7 +12,7 @@ export const App = () => (
     </div>
     <div className="row">
       <div className="col-6">
-        <Editor />
+        <MonacoEditor />
       </div>
       <div className="col-6">
         <Terminal />
