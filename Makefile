@@ -1,6 +1,10 @@
+setup: install db-migrate
+
 install:
 	npm install
-    npm run typeorm -- migration:run -d src/data-source.ts
+
+db-migrate:
+	npm run typeorm -- migration:run -d src/data-source.ts
 
 start-backend:
 	npm run start:dev
