@@ -18,8 +18,6 @@ import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippet } from './interfaces/snippets.interface';
 import { SnippetsService } from './snippets.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
-import { JoiValidationPipe } from './validation/validation.pipe';
-import { snippetSchema } from './validation/snippetValidation.js';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -39,7 +37,6 @@ export class SnippetsController {
   }
 
   @Post()
-  @UsePipes(new JoiValidationPipe(snippetSchema))
   async create(@Body() createSnippetDto: CreateSnippetDto) {
     return this.snippetsService.create(createSnippetDto);
   }
