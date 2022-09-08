@@ -1,5 +1,5 @@
 export class UpdateSnippetDto {
-  name: string;
+  name?: string;
 
-  code: any;
+  code?: any;
 }

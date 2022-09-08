@@ -3,11 +3,10 @@
 /* eslint-disable class-methods-use-this */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippets } from './snippet.entity';
-// import { Snippet } from './interfaces/snippets.interface';
 
 @Injectable()
 export class SnippetsService {
@@ -16,19 +15,22 @@ export class SnippetsService {
     private snippetsRepository: Repository<Snippets>,
   ) {}
 
-  findOne(id: number): Promise<Snippets> {
+  async findOne(id: number): Promise<Snippets> {
     return this.snippetsRepository.findOneBy({ id });
   }
 
   create(createSnippetDto: CreateSnippetDto): Promise<Snippets> {
     const snippet = new Snippets();
     snippet.code = createSnippetDto.code;
-    console.log(snippet);
     return this.snippetsRepository.save(snippet);
   }
 
-  async update(updateSnippetDto: UpdateSnippetDto, id: number): Promise<void> {
+  async update(
+    id: number,
+    updateSnippetDto: UpdateSnippetDto,
+  ): Promise<Snippets[]> {
     await this.snippetsRepository.update(id, updateSnippetDto);
+    return this.snippetsRepository.find();
   }
 
   async delete(id: number): Promise<void> {

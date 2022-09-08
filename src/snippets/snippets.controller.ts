@@ -18,7 +18,7 @@ import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippet } from './interfaces/snippets.interface';
 import { SnippetsService } from './snippets.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
-// import { JoiValidationPipe } from './validation/validation.pipe';
+import { JoiValidationPipe } from './validation/validation.pipe';
 import { snippetSchema } from './validation/snippetValidation';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { AuthGuard } from './auth/auth.guard';
@@ -33,19 +33,14 @@ export class SnippetsController {
     return this.snippetsService.findAll();
   }
 
-  @Get(':user/:id')
-  findOne(
-    @Param('id', new ParseIntPipe()) id: number,
-    @Param('user', new ParseIntPipe()) user: number,
-  ): string {
-    console.log(id);
-    return `This action returns snippet ${id} of user ${user}`;
+  @Get('snippet/:id')
+  async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<Snippet> {
+    return this.snippetsService.findOne(id);
   }
 
   @Post()
-  // @UsePipes(new JoiValidationPipe(snippetSchema))
+  @UsePipes(new JoiValidationPipe(snippetSchema))
   async create(@Body() createSnippetDto: CreateSnippetDto) {
-    console.log(createSnippetDto);
     return this.snippetsService.create(createSnippetDto);
   }
 
@@ -54,11 +49,11 @@ export class SnippetsController {
     @Param('id', new ParseIntPipe()) id: number,
     @Body() updateSnippetDto: UpdateSnippetDto,
   ) {
-    return this.snippetsService.update(updateSnippetDto, id);
+    return this.snippetsService.update(id, updateSnippetDto);
   }
 
   @Delete(':id')
-  remove(@Param('id', new ParseIntPipe()) id: number) {
+  async delete(@Param('id', new ParseIntPipe()) id: number) {
     return this.snippetsService.delete(id);
   }
 }
