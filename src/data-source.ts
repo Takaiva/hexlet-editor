@@ -3,7 +3,8 @@ import { snippets1662489659089 } from './migrations/1662489659089-snippets';
 
 export const dataSource = new DataSource({
   type: 'postgres',
-  host: process.env.DATABASE_URL,
+  url: process.env.DATABASE_URL,
+  // host: process.env.DATABASE_URL,
   port: 5432,
   username: 'postgres',
   //  password: '1234',
