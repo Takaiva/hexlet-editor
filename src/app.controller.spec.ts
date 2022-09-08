@@ -13,4 +13,12 @@ describe('AppController', () => {
 
     appController = app.get<AppController>(AppController);
   });
+
+  describe('app', () => {
+    it('should run app', async () => {
+      expect(appController).toMatchObject({"appService": {}});
+    })
+  })
 });
+
+
