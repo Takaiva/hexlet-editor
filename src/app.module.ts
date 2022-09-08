@@ -20,7 +20,7 @@ import { SnippetsService } from './snippets/snippets.service';
     SnippetsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.DATABASE_URL,
       port: 5432,
       username: 'timyr',
       password: '1234',

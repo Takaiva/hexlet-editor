@@ -1,9 +1,6 @@
 install:
 	npm install
-	npm run typeorm -- migration:run -d src/data-source.ts
-
-drop-data:
-    npm run typeorm -- migration:revert -d src/data-source.ts
+    npm run typeorm -- migration:run -d src/data-source.ts
 
 start-backend:
 	npm run start:dev
@@ -35,3 +32,6 @@ heroku-logs:
 
 start-frontend:
 	npx webpack --watch --progress
+
+data-drop:
+	npm run typeorm -- migration:run -d src/data-source.ts

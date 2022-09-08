@@ -20,6 +20,7 @@ import { SnippetsService } from './snippets.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { AuthGuard } from './auth/auth.guard';
+import { ValidationPipe } from './validation/validation.pipe';
 
 @Controller('snippets')
 @UseFilters(new HttpExceptionFilter())
@@ -37,7 +38,7 @@ export class SnippetsController {
   }
 
   @Post()
-  async create(@Body() createSnippetDto: CreateSnippetDto) {
+  async create(@Body(new ValidationPipe()) createSnippetDto: CreateSnippetDto) {
     return this.snippetsService.create(createSnippetDto);
   }
 
