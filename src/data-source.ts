@@ -5,9 +5,10 @@ export const dataSource = new DataSource({
   type: 'postgres',
   host: process.env.DATABASE_URL,
   port: 5432,
-  //  username: 'timyr',
+  username: 'postgres',
   //  password: '1234',
   //  database: 'postgres',
+  ssl: { rejectUnauthorized: false },
   entities: [`${__dirname}/snippets/*.entity.{ts,js}`],
   migrations: [snippets1662489659089],
 });
