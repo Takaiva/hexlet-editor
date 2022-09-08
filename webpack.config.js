@@ -5,7 +5,6 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 // const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
@@ -80,7 +79,6 @@ module.exports = {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin({})],
   },
   plugins: [
-    new MonacoWebpackPlugin(),
     new MiniCssExtractPlugin(),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/

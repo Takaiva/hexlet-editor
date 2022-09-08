@@ -1,24 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const runCode = createAsyncThunk(
   'terminal/runCode',
   async (code) => {
-    const response = await new Promise((resolve) => {
-      setTimeout(() => {
-        let result;
-
-        try {
-          // eslint-disable-next-line no-eval
-          result = eval(code);
-        } catch (err) {
-          result = err.toString();
-        }
-
-        resolve(result);
-      }, 1000);
-    });
-    return response;
+    const { data, status } = await axios.get(`/compile?code=${code}`);
+    if (status === 200) return data;
+    return 'Connection issues';
   },
   {
     condition: (code, { getState }) => {

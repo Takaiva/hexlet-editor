@@ -7,6 +7,8 @@ import {
 } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './snippets/common/logger.middleware';
@@ -17,6 +19,9 @@ import { SnippetsService } from './snippets/snippets.service';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'app/assets'),
+    }),
     SnippetsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
