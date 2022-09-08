@@ -19,7 +19,7 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 ## Installation
 
 ```bash
-make install
+make setup
 ```
 
 ## Running the app
