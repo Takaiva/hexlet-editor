@@ -1,5 +1,10 @@
+setup: install db-migrate
+
 install:
 	npm install
+
+db-migrate:
+	npm run typeorm -- migration:run -d src/data-source.ts
 
 start-backend:
 	npm run start:dev
@@ -31,3 +36,6 @@ heroku-logs:
 
 start-frontend:
 	npx webpack --watch --progress
+
+data-drop:
+	npm run typeorm -- migration:run -d src/data-source.ts

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-constructor */
 /* eslint-disable class-methods-use-this */
 import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
