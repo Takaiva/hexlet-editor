@@ -17,7 +17,6 @@ import { SnippetsController } from './snippets/snippets.controller';
 import { SnippetsModule } from './snippets/snippets.module';
 import { SnippetsService } from './snippets/snippets.service';
 
-console.log(process.env.DATABASE_URL);
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -27,7 +26,7 @@ console.log(process.env.DATABASE_URL);
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
-      username: process.env.DATABASE_USERNAME,
+      username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       port: Number(process.env.DATABASE_PORT),
       ssl: { rejectUnauthorized: false },
