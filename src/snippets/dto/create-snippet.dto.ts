@@ -1,5 +1,6 @@
-export class CreateSnippetDto {
-  id: number;
+import { IsString } from 'class-validator';
 
-  textEditor: any;
+export class CreateSnippetDto {
+  @IsString()
+  code: any;
 }

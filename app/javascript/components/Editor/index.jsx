@@ -1,24 +1,29 @@
 import React from 'react';
-import MonacoEditor from 'react-monaco-editor';
+
+import Editor from '@monaco-editor/react';
 
 import { useEditor } from './hooks.js';
 
-export function Editor() {
-  const { code, language, onChange, editorDidMount } = useEditor();
+export const MonacoEditor = () => {
+  const {
+    code,
+    language,
+    onChange,
+    editorDidMount,
+  } = useEditor();
 
   const options = {
     selectOnLineNumbers: true,
   };
 
   return (
-    <MonacoEditor
-      height="600"
-      language={language}
+    <Editor
+      height="410px"
+      defaultLanguage={language}
       theme="vs-dark"
-      value={code}
+      defaultValue={code}
       options={options}
       onChange={onChange}
-      editorDidMount={editorDidMount}
     />
   );
 }

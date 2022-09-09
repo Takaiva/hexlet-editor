@@ -1,5 +1,10 @@
-export class UpdateSnippetDto {
-  id: number;
+import { IsString, Length } from 'class-validator';
 
-  textEditor: any;
+export class UpdateSnippetDto {
+  @Length(1, 30)
+  @IsString()
+  name?: string;
+
+  @IsString()
+  code?: any;
 }
