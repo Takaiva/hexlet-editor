@@ -26,9 +26,9 @@ import { SnippetsService } from './snippets/snippets.service';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
-      username: 'postgres',
-      password: 'postgres',
-      port: 5432,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      port: process.env.DATABASE_PORT,
       ssl: { rejectUnauthorized: false },
       entities: [Snippets],
       migrations: ['./migrations/*.{ts,js}'],
