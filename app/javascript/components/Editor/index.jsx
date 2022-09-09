@@ -3,14 +3,8 @@ import MonacoEditor from 'react-monaco-editor';
 
 import { useEditor } from './hooks.js';
 
-export const Editor = () => {
-  const {
-    code,
-    language,
-    onChange,
-    editorDidMount,
-  } = useEditor();
-
+export function Editor() {
+  const { code, language, onChange, editorDidMount } = useEditor();
 
   const options = {
     selectOnLineNumbers: true,
@@ -27,4 +21,4 @@ export const Editor = () => {
       editorDidMount={editorDidMount}
     />
   );
-};
+}

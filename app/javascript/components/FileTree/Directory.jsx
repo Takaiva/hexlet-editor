@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { DocumentImage } from './DocumentImage';
 
-export const Directory = ({
+export function Directory({
   type,
   name,
   documentChildren,
   renderDocumentChildren,
-}) => {
+}) {
   const [isShow, setIsShow] = useState(false);
 
   const showDocumentHandler = (event) => {
@@ -24,7 +24,7 @@ export const Directory = ({
         <span className="ps-2">{name}</span>
       </div>
       <div className="d-flex flex-grow-1">
-        <div className="d-inline-block px-2"></div>
+        <div className="d-inline-block px-2" />
         <div className="w-100">
           {isShow &&
             documentChildren.map((child) => renderDocumentChildren(child))}
@@ -32,4 +32,4 @@ export const Directory = ({
       </div>
     </div>
   );
-};
+}
