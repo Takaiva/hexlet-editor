@@ -17,6 +17,7 @@ import { SnippetsController } from './snippets/snippets.controller';
 import { SnippetsModule } from './snippets/snippets.module';
 import { SnippetsService } from './snippets/snippets.service';
 
+console.log(process.env.DATABASE_URL);
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -28,7 +29,7 @@ import { SnippetsService } from './snippets/snippets.service';
       url: process.env.DATABASE_URL,
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
-      port: process.env.DATABASE_PORT,
+      port: Number(process.env.DATABASE_PORT),
       ssl: { rejectUnauthorized: false },
       entities: [Snippets],
       migrations: ['./migrations/*.{ts,js}'],
