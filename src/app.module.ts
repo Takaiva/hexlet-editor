@@ -28,6 +28,7 @@ import { SnippetsService } from './snippets/snippets.service';
       url: process.env.DATABASE_URL,
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
+      synchronize: process.env.NODE_ENV !== 'production',
       port: Number(process.env.DATABASE_PORT),
       ssl: { rejectUnauthorized: false },
       entities: [Snippets],
