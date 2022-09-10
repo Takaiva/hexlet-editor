@@ -1,1 +1,1 @@
-web: make db-migrate | npm run start:prod
+web: npm run start:prod
