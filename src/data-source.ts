@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { snippets1662489659089 } from './migrations/1662489659089-snippets';
 
 export const dataSource = new DataSource({
