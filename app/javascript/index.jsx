@@ -6,9 +6,10 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 // import gon from 'gon';
 
+import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './slices';
 import resources from './locales/locales.js';
-import { App } from './App.jsx';
+import RoutesInit from './RoutesInit';
 
 export default async () => {
   const defaultlanguage = 'ru';
@@ -25,7 +26,9 @@ export default async () => {
   const rootNode = document.getElementById('main');
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <RoutesInit />
+      </BrowserRouter>
     </Provider>,
     rootNode,
   );
