@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './slices';
 import resources from './locales/locales.js';
 import RoutesInit from './RoutesInit';
+import { Navbar } from './components/Navbar.jsx';
 
 export default async () => {
   const defaultlanguage = 'ru';
@@ -27,6 +28,7 @@ export default async () => {
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
+        <Navbar />
         <RoutesInit />
       </BrowserRouter>
     </Provider>,
