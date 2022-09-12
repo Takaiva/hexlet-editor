@@ -12,7 +12,6 @@ export const MonacoEditor = () => {
     editorDidMount,
   } = useEditor();
 
-
   const options = {
     selectOnLineNumbers: true,
   };
@@ -27,4 +26,4 @@ export const MonacoEditor = () => {
       onChange={onChange}
     />
   );
-};
+}
