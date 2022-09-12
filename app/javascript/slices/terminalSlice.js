@@ -5,7 +5,8 @@ import axios from 'axios';
 export const runCode = createAsyncThunk(
   'terminal/runCode',
   async (code) => {
-    const { data, status } = await axios.get(`/compile?code=${code}`);
+    const { data, status } = await axios.get(`/compile`, { params: { code } });
+
     if (status === 200) return data;
     return 'Connection issues';
   },
@@ -23,7 +24,7 @@ const slice = createSlice({
   name: 'terminal',
   initialState: {
     codeExecutionState: 'idle',
-    output: '',
+    output: [],
   },
   reducers: {},
   extraReducers: {
@@ -32,10 +33,10 @@ const slice = createSlice({
     },
     [runCode.fulfilled]: (state, { payload }) => {
       state.codeExecutionState = 'idle';
-      state.output = payload;
+      state.output = payload.split('\n');
     },
     [runCode.rejected]: (state, { payload }) => {
-      state.output = payload;
+      state.output = payload.split('\n');
       state.codeExecutionState = 'idle';
     },
   },
