@@ -16,11 +16,15 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 
 * node >= 12
 * Heroku CLI
+* PostGreSQL
 ## Installation
 
 ```bash
-make setup
+make install
 ```
+## Prepare database
+
+In .env file, set your username and password for authentication in database.
 
 ## Running the app
 

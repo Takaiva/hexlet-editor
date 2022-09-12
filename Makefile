@@ -1,20 +1,14 @@
-setup: install db-migrate
-
 install:
 	npm install
 
 db-migrate:
 	npm run typeorm -- migration:run -d src/data-source.ts
 
-start-backend:
+start:
 	npm run start:dev
 
 start-dev:
 	heroku local -f Procfile.development
-
-start:
-	npm run prebuild
-	npm run start
 
 front-dev:
 	npm run serve
@@ -38,4 +32,4 @@ start-frontend:
 	npx webpack --watch --progress
 
 data-drop:
-	npm run typeorm -- migration:run -d src/data-source.ts
+	npm run typeorm -- migration:revert -d src/data-source.ts
