@@ -9,7 +9,8 @@ const runTerminal = (xterm, output) => {
   const term = xterm.terminal;
   const shellprompt = '$ ';
 
-  term.write(`\r\n${shellprompt}${output}`);
+  term.reset();
+  output.forEach((part) => term.write(`\r\n${shellprompt}${part}`));
 };
 
 export const Terminal = () => {
