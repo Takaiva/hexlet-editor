@@ -23,7 +23,7 @@ const slice = createSlice({
   name: 'terminal',
   initialState: {
     codeExecutionState: 'idle',
-    output: '',
+    output: [],
   },
   reducers: {},
   extraReducers: {
@@ -32,10 +32,10 @@ const slice = createSlice({
     },
     [runCode.fulfilled]: (state, { payload }) => {
       state.codeExecutionState = 'idle';
-      state.output = payload;
+      state.output = payload.split('\n');
     },
     [runCode.rejected]: (state, { payload }) => {
-      state.output = payload;
+      state.output = payload.split('\n');
       state.codeExecutionState = 'idle';
     },
   },
