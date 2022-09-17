@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const slice = createSlice({
   name: 'editor',
@@ -14,6 +15,12 @@ const slice = createSlice({
     },
   },
 });
+
+const getData = async () => {
+  const data = await axios.post('/snippets', { code: '' });
+  return data.data.id;
+};
+export const dataId = getData();
 
 export const { actions } = slice;
 
