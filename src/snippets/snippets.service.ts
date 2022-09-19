@@ -19,7 +19,7 @@ export class SnippetsService {
     return this.snippetsRepository.findOneBy({ id });
   }
 
-  create(createSnippetDto: CreateSnippetDto): Promise<Snippets> {
+  async create(createSnippetDto: CreateSnippetDto): Promise<Snippets> {
     const snippet = new Snippets();
     snippet.code = createSnippetDto.code;
     return this.snippetsRepository.save(snippet);
