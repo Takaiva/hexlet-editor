@@ -21,7 +21,8 @@ const isAuthenticated = async () => {
 };
 
 const getData = async () => {
-  if (!isAuthenticated()) {
+  const isAuth = await isAuthenticated();
+  if (!isAuth) {
     return null;
   }
   const data = await axios.post('api/snippets', { code: '' });
