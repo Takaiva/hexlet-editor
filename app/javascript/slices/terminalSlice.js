@@ -33,10 +33,10 @@ const slice = createSlice({
     },
     [runCode.fulfilled]: (state, { payload }) => {
       state.codeExecutionState = 'idle';
-      state.output = payload.split('\n');
+      state.output = [...payload];
     },
     [runCode.rejected]: (state, { payload }) => {
-      state.output = payload.split('\n');
+      state.output = [...payload];
       state.codeExecutionState = 'idle';
     },
   },
