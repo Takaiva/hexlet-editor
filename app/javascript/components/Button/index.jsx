@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useButton } from './hooks';
 
 export const Button = memo(() => {
-  const { onClick, disabled, onSave } = useButton();
+  const { onClick, disabled, update } = useButton();
 
   return (
     <div className="text-center">
@@ -10,17 +10,12 @@ export const Button = memo(() => {
         type="button"
         className="btn btn-success btn-lg"
         disabled={disabled}
-        onClick={onClick}
+        onClick={() => {
+          onClick();
+          update();
+        }}
       >
         Run
-      </button>
-      <button
-        type="button"
-        className="btn btn-success btn-lg"
-        onClick={onSave}
-        disabled={disabled}
-      >
-        Save
       </button>
     </div>
   );
