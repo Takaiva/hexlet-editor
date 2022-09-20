@@ -18,7 +18,11 @@ export const useButton = () => {
     [dispatch, runCode, code],
   );
   const update = async () => {
-    const response = await axios.put(`api/snippets/${await dataId}`, {
+    const data = await dataId;
+    if (!data) {
+      return 'Please signin for save snippets';
+    }
+    const response = await axios.put(`api/snippets/${data}`, {
       code,
     });
     return response;
