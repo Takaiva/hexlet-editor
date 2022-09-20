@@ -17,13 +17,8 @@ export const useButton = () => {
     () => dispatch(runCode(code)),
     [dispatch, runCode, code],
   );
-<<<<<<< HEAD
-  const onSave = async () => {
-    const data = axios.post('api/snippets', {
-=======
   const update = async () => {
-    const response = await axios.put(`/snippets/${await dataId}`, {
->>>>>>> 9fe484d6877a9ad6ce55776288bb5e70002e1e1b
+    const response = await axios.put(`api/snippets/${await dataId}`, {
       code,
     });
     return response;
