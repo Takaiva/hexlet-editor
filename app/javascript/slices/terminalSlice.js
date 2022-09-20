@@ -5,7 +5,9 @@ import axios from 'axios';
 export const runCode = createAsyncThunk(
   'terminal/runCode',
   async (code) => {
-    const { data, status } = await axios.get(`/compile`, { params: { code } });
+    const { data, status } = await axios.get(`api/compile`, {
+      params: { code },
+    });
 
     if (status === 200) return data;
     return 'Connection issues';

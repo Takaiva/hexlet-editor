@@ -17,7 +17,7 @@ export const useButton = () => {
     [dispatch, runCode, code],
   );
   const onSave = async () => {
-    const data = axios.post('/snippets', {
+    const data = axios.post('api/snippets', {
       code,
     });
     return data;

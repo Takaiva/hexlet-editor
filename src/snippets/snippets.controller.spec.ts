@@ -19,6 +19,7 @@ describe('SnippetController', () => {
         if (token === SnippetsService) {
           return {
             findAll: jest.fn().mockResolvedValue(dataSnippets),
+            findOne: jest.fn(() => []),
             create: jest.fn(() => []),
             update: jest.fn(() => []),
             delete: jest.fn(() => []),
@@ -46,15 +47,22 @@ describe('SnippetController', () => {
       expect(snippetsService.findAll).toHaveBeenCalled();
     });
 
+    it('should return snippet', async () => {
+      jest.spyOn(snippetsController, 'findOne');
+      await snippetsController.findOne(2);
+
+      expect(snippetsService.findOne).toBeCalledWith(2);
+    });
+
     it('should create snippet', async () => {
       const createData = { code: 'test' };
       jest.spyOn(snippetsController, 'create');
-      await snippetsController.create(createData);
-      expect(snippetsService.create).toHaveBeenCalledWith(createData);
+      await snippetsController.create(3, createData);
+      expect(snippetsService.create).toHaveBeenCalledWith(createData, 3);
     });
 
     it('should delete snippet', async () => {
-      jest.spyOn(snippetsController, 'create');
+      jest.spyOn(snippetsController, 'delete');
       await snippetsController.delete(3);
       expect(snippetsService.delete).toHaveBeenCalledWith(3);
     });

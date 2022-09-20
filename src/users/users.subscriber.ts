@@ -6,19 +6,19 @@ import {
   EventSubscriber,
   InsertEvent,
 } from 'typeorm';
-import { Snippets } from '../entities/snippet.entity';
+import { Users } from '../entities/user.entity';
 
 @EventSubscriber()
-export class SnippetSubscriber implements EntitySubscriberInterface<Snippets> {
+export class UsersSubscriber implements EntitySubscriberInterface<Users> {
   constructor(dataSource: DataSource) {
     dataSource.subscribers.push(this);
   }
 
   listenTo() {
-    return Snippets;
+    return Users;
   }
 
-  beforeInsert(event: InsertEvent<Snippets>): void | Promise<any> {
-    console.log('BEFORE SNIPPET INSERTER: ', event.entity);
+  beforeInsert(event: InsertEvent<Users>): void | Promise<any> {
+    console.log('BEFORE USER INSERTER: ', event.entity);
   }
 }
