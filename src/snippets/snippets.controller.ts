@@ -10,16 +10,16 @@ import {
   Param,
   Delete,
   UseFilters,
-  UsePipes,
   UseGuards,
 } from '@nestjs/common';
+import { User } from '../users/users.decorator';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippet } from './interfaces/snippets.interface';
 import { SnippetsService } from './snippets.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
-import { AuthGuard } from './auth/auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ValidationPipe } from './validation/validation.pipe';
 
 @Controller('snippets')
@@ -32,17 +32,23 @@ export class SnippetsController {
     return this.snippetsService.findAll();
   }
 
-  @Get('snippet/:id')
+  @Get(':id')
   async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<Snippet> {
     return this.snippetsService.findOne(id);
   }
 
   @Post()
-  async create(@Body(new ValidationPipe()) createSnippetDto: CreateSnippetDto) {
-    return this.snippetsService.create(createSnippetDto);
+  @UseGuards(JwtAuthGuard)
+  async create(
+    @User('id') userId: number,
+    @Body(new ValidationPipe())
+    createSnippetDto: CreateSnippetDto,
+  ) {
+    return this.snippetsService.create(createSnippetDto, userId);
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   update(
     @Param('id', new ParseIntPipe()) id: number,
     @Body() updateSnippetDto: UpdateSnippetDto,
@@ -51,6 +57,7 @@ export class SnippetsController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async delete(@Param('id', new ParseIntPipe()) id: number) {
     return this.snippetsService.delete(id);
   }

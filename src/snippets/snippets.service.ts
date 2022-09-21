@@ -4,23 +4,30 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Users } from '../entities/user.entity';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
-import { Snippets } from './snippet.entity';
+import { Snippets } from '../entities/snippet.entity';
 
 @Injectable()
 export class SnippetsService {
   constructor(
     @InjectRepository(Snippets)
     private snippetsRepository: Repository<Snippets>,
+    @InjectRepository(Users)
+    private usersRepository: Repository<Users>,
   ) {}
 
   async findOne(id: number): Promise<Snippets> {
     return this.snippetsRepository.findOneBy({ id });
   }
 
-  async create(createSnippetDto: CreateSnippetDto): Promise<Snippets> {
+  async create(
+    createSnippetDto: CreateSnippetDto,
+    id: number,
+  ): Promise<Snippets> {
     const snippet = new Snippets();
+    snippet.user = await this.usersRepository.findOneBy({ id });
     snippet.code = createSnippetDto.code;
     return this.snippetsRepository.save(snippet);
   }

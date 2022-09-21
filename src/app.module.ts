@@ -12,10 +12,16 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './snippets/common/logger.middleware';
-import { Snippets } from './snippets/snippet.entity';
+import { Snippets } from './entities/snippet.entity';
+import { Users } from './entities/user.entity';
 import { SnippetsController } from './snippets/snippets.controller';
 import { SnippetsModule } from './snippets/snippets.module';
 import { SnippetsService } from './snippets/snippets.service';
+import { AuthModule } from './auth/auth.module';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -23,6 +29,8 @@ import { SnippetsService } from './snippets/snippets.service';
       rootPath: join(__dirname, '..', 'app/assets'),
     }),
     SnippetsModule,
+    UsersModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
@@ -31,12 +39,17 @@ import { SnippetsService } from './snippets/snippets.service';
       synchronize: process.env.NODE_ENV !== 'production',
       port: Number(process.env.DATABASE_PORT),
       ssl: { rejectUnauthorized: false },
-      entities: [Snippets],
+      entities: [Snippets, Users],
       migrations: ['./migrations/*.{ts,js}'],
     }),
   ],
-  controllers: [AppController, SnippetsController],
-  providers: [AppService, SnippetsService],
+  controllers: [
+    AppController,
+    SnippetsController,
+    UsersController,
+    AuthController,
+  ],
+  providers: [AppService, SnippetsService, UsersService, AuthModule],
 })
 export class AppModule implements NestModule {
   // eslint-disable-next-line no-useless-constructor

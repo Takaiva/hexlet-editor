@@ -15,11 +15,20 @@ const slice = createSlice({
     },
   },
 });
+const isAuthenticated = async () => {
+  const response = await axios.get('api/users/profile');
+  return response.user;
+};
 
 const getData = async () => {
-  const data = await axios.post('/snippets', { code: '' });
+  const isAuth = await isAuthenticated();
+  if (!isAuth) {
+    return null;
+  }
+  const data = await axios.post('api/snippets', { code: '' });
   return data.data.id;
 };
+
 export const dataId = getData();
 
 export const { actions } = slice;

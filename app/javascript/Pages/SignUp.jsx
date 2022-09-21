@@ -110,6 +110,7 @@ export const SignUp = () => {
                         {t('signUp.confirmUserPassword')}
                       </FormLabel>
                       <FormControl
+                        type="password"
                         autoFocus="autofocus"
                         name="confirmPassword"
                         id="confirmPassword"

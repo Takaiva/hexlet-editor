@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
-import { db } from './db.js';
 
 export function SignIn() {
   const [authFailed, setAuthFailed] = useState(false);
@@ -14,15 +14,16 @@ export function SignIn() {
     },
     onSubmit: (values) => {
       setAuthFailed(false);
-      const findUser = db.filter(
-        ({ email, password }) =>
-          email === values.email && password === values.password,
-      );
-      if (findUser.length) {
-        console.log('переход к терминалу');
-      } else {
-        setAuthFailed(true);
-      }
+      const data = axios
+        .post('api/login', values)
+        .then((response) => {
+          return response.data;
+        })
+        .catch((err) => {
+          setAuthFailed(true);
+          return err;
+        });
+      return data;
     },
   });
 
