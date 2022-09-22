@@ -4,7 +4,7 @@ import * as vm from 'node:vm';
 @Injectable()
 export class AppService {
   // eslint-disable-next-line class-methods-use-this
-  run(code: string): string {
+  run(code: string): string[] {
     const internalLogs = [];
 
     const context = {
@@ -25,13 +25,13 @@ export class AppService {
         displayErrors: true,
       });
 
-      return internalLogs.join('\n').toString();
+      return internalLogs;
     } catch (err) {
       const lineOfError = err.stack
         .split('evalmachine.<anonymous>:')[1]
         .substring(0, 1);
       const errorMsg = `${err.message} at line ${lineOfError}`;
-      return errorMsg;
+      return [errorMsg];
     }
   }
 }

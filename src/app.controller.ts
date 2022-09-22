@@ -8,7 +8,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('compile')
-  getLogs(@Query() query: any): string {
+  getLogs(@Query() query: any): string[] {
     return this.appService.run(query.code);
   }
 }

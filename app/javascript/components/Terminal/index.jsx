@@ -7,10 +7,12 @@ import { useTerminal } from './hooks.js';
 
 const runTerminal = (xterm, output) => {
   const term = xterm.terminal;
-  const shellprompt = '$ ';
+  const shellprompt = ' $ ';
 
   term.reset();
-  output.forEach((part) => term.write(`\r\n${shellprompt}${part}`));
+  output.forEach((part) =>
+    term.write(`\r\n${shellprompt}${JSON.stringify(part)}`),
+  );
 };
 
 export const Terminal = () => {
