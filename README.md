@@ -1,10 +1,10 @@
-# Hexlet Editor
+# Runit
 
 [![On Push](https://github.com/hexlet/hexlet-editor/workflows/On%20Push/badge.svg?branch=main)](https://github.com/hexlet/hexlet-editor/actions)
 
 ## About
 
-Hexlet-editor is an environment for writing and executing code that will be actively used on all Hexlet platforms. The closest counterpart is the repl.it service. The backend is developed in NestJS and TypeScript, the frontend uses React.
+Runit is an environment for writing and executing code that will be actively used on all Hexlet Rus Ltd platforms. The closest counterpart is the repl.it service. The backend is developed in NestJS and TypeScript, the frontend uses React.
 
 Tasks:
 
@@ -17,11 +17,13 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 * node >= 12
 * Heroku CLI
 * PostGreSQL
+
 ## Installation
 
 ```bash
 make install
 ```
+
 ## Prepare database
 
 In .env file, set your username and password for authentication in database.
@@ -34,6 +36,7 @@ make start
 http://localhost:3000
 
 ## Running the app in development mode
+
 ```bash
 make start-dev
 ```
@@ -45,7 +48,7 @@ Look at the list of issues, choose an interesting task, write to the issue to sa
 
 ---
 
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor)
+[![Hexlet Rus Ltd logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor)
 
 This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor).
 
