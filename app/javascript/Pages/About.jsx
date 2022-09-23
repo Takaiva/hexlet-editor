@@ -6,7 +6,7 @@ export function About() {
       <div className="container mt-5">
         <h3>Информация о проекте</h3>
         <p>
-          <strong>Hexlet-editor</strong> — среда для написания и исполнения
+          <strong>Runit</strong> — среда для написания и исполнения
           кода, которую будем активно использовать на всех платформах Хекслета.
         </p>
         <p>
@@ -56,7 +56,7 @@ export function About() {
         <div className="container-xl">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pt-3">
             <div className="col d-flex flex-column mb-2">
-              <h3 className="h3 pb-2 border-bottom">© Hexlet</h3>
+              <h3 className="h3 pb-2 border-bottom">© ООО “Хекслет Рус”</h3>
               <a className="text-secondary" href="/about">
                 О проекте
               </a>
