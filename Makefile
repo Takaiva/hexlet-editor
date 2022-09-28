@@ -8,7 +8,7 @@ start:
 	npm run start:dev
 
 start-dev:
-	heroku local -f Procfile.development
+	NODE_ENV=development npm run start:dev
 
 front-dev:
 	npm run serve

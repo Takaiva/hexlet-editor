@@ -1,32 +1,105 @@
 /* eslint-disable class-methods-use-this */
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class migration1663236009774 implements MigrationInterface {
-  name = 'migration1663236009774';
-
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `CREATE TABLE "snippets" ("id" SERIAL NOT NULL, "name" character varying NOT NULL DEFAULT 'Untitled', "code" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "userId" integer, CONSTRAINT "PK_da592ff802b6af1369e622402a6" PRIMARY KEY ("id"))`,
+    await queryRunner.createTable(
+      new Table({
+        name: 'users',
+        columns: [
+          {
+            name: 'id',
+            type: 'int',
+            isNullable: false,
+            isPrimary: true,
+          },
+          {
+            name: 'name',
+            type: 'character',
+            isNullable: false,
+            default: "'Untitled'",
+          },
+          {
+            name: 'email',
+            type: 'character',
+            isNullable: false,
+            isUnique: true,
+          },
+          {
+            name: 'password',
+            type: 'character',
+            isNullable: false,
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            isNullable: false,
+            default: 'CURRENT_TIMESTAMP',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            isNullable: false,
+            default: 'CURRENT_TIMESTAMP',
+          },
+        ],
+      }),
     );
-    await queryRunner.query(
-      `CREATE TABLE "users" ("id" SERIAL NOT NULL, "name" character varying NOT NULL DEFAULT 'Untitled', "email" character varying NOT NULL, "password" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`,
-    );
-    await queryRunner.query(
-      `CREATE UNIQUE INDEX "IDX_97672ac88f789774dd47f7c8be" ON "users" ("email") `,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "snippets" ADD CONSTRAINT "FK_8fdfc80b4a5bf0ac48946a2ca1f" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+
+    await queryRunner.createTable(
+      new Table({
+        name: 'snippets',
+        columns: [
+          {
+            name: 'id',
+            type: 'int',
+            isNullable: false,
+            isPrimary: true,
+          },
+          {
+            name: 'name',
+            type: 'character',
+            isNullable: false,
+            default: "'Untitled'",
+          },
+          {
+            name: 'code',
+            type: 'character',
+            isNullable: false,
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            isNullable: false,
+            default: 'CURRENT_TIMESTAMP',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            isNullable: false,
+            default: 'CURRENT_TIMESTAMP',
+          },
+          {
+            name: 'userId',
+            type: 'int',
+          },
+        ],
+        foreignKeys: [
+          {
+            name: 'userId',
+            columnNames: ['userId'],
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            onUpdate: 'cascade',
+            onDelete: 'cascade',
+          },
+        ],
+      }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `ALTER TABLE "snippets" DROP CONSTRAINT "FK_8fdfc80b4a5bf0ac48946a2ca1f"`,
-    );
-    await queryRunner.query(
-      `DROP INDEX "public"."IDX_97672ac88f789774dd47f7c8be"`,
-    );
-    await queryRunner.query(`DROP TABLE "users"`);
-    await queryRunner.query(`DROP TABLE "snippets"`);
+    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('snippets');
   }
 }
