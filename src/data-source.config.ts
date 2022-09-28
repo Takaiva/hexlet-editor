@@ -1,6 +1,6 @@
 import { DataSourceOptions } from 'typeorm';
-import { migration1663236009774 } from './migrations/1663236009774-migration';
 import { config } from 'dotenv';
+import { migration1663236009774 } from './migrations/1663236009774-migration';
 
 export default (): DataSourceOptions => {
   config();
