@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this, @typescript-eslint/no-unused-vars */
 import {
   ArgumentMetadata,
   BadRequestException,
