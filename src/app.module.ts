@@ -22,6 +22,7 @@ import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { AuthController } from './auth/auth.controller';
+import getDataSourceConfig from './data-source.config';
 
 @Module({
   imports: [
@@ -31,17 +32,7 @@ import { AuthController } from './auth/auth.controller';
     SnippetsModule,
     UsersModule,
     AuthModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      url: process.env.DATABASE_URL,
-      username: process.env.DATABASE_USERNAME,
-      password: process.env.DATABASE_PASSWORD,
-      synchronize: process.env.NODE_ENV !== 'production',
-      port: Number(process.env.DATABASE_PORT),
-      ssl: { rejectUnauthorized: false },
-      entities: [Snippets, Users],
-      migrations: ['./migrations/*.{ts,js}'],
-    }),
+    TypeOrmModule.forRoot(getDataSourceConfig()),
   ],
   controllers: [
     AppController,
