@@ -40,7 +40,7 @@ http://localhost:3000
 ```bash
 make start-dev
 ```
-http://localhost:5000
+http://localhost:3000
 
 ## Как помочь проекту
 
