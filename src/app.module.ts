@@ -12,8 +12,6 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './snippets/common/logger.middleware';
-import { Snippets } from './entities/snippet.entity';
-import { Users } from './entities/user.entity';
 import { SnippetsController } from './snippets/snippets.controller';
 import { SnippetsModule } from './snippets/snippets.module';
 import { SnippetsService } from './snippets/snippets.service';
