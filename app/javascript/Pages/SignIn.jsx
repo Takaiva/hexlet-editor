@@ -77,7 +77,7 @@ export function SignIn() {
                   <Button
                     type="submit"
                     variant="primary"
-                    className="w-100 btn-primary"
+                    className="w-100"
                     data-disable-with="Войти"
                   >
                     Войти
