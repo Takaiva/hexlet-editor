@@ -54,12 +54,12 @@ export const SignUp = () => {
   });
   const { handleBlur, handleChange, handleSubmit, values } = formik;
   return (
-    <Container>
-      <Row>
-        <Col className="col-md-6 py-5">
+    <Container fluid className="h-100">
+      <Row className="justify-content-center align-content-center h-100">
+        <Col xs={12} md={8} xxl={6}>
           <div className="pb-lg-5">
             <Card className="shadow-sm">
-              <Card.Body>
+              <Card.Body className="p-lg-4 p-xl-5">
                 <h1 className="mb-4 fw-light">{t('signUp.pageHeader')}</h1>
                 <div className="pt-lg-3">
                   <Form onSubmit={handleSubmit}>
@@ -119,7 +119,13 @@ export const SignUp = () => {
                         value={values.confirmPassword}
                       />
                     </div>
-                    <Button type="submit">{t('signUp.register')}</Button>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      className="w-100 mt-4"
+                    >
+                      {t('signUp.register')}
+                    </Button>
                   </Form>
                 </div>
               </Card.Body>
