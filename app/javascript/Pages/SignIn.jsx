@@ -76,7 +76,7 @@ export function SignIn() {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <div className="text-end my-3">
-                    <a className="text-decoration-none small" href="/">
+                    <a className="text-decoration-none small" href="remind_password">
                       Не помню пароль
                     </a>
                   </div>
