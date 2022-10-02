@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import {
@@ -17,7 +17,13 @@ import {
 import { useTranslation } from 'react-i18next';
 
 export const SignUp = () => {
+  const inputRef = useRef();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const signUpValidation = yup.object().shape({
     name: yup
       .string()
@@ -54,12 +60,12 @@ export const SignUp = () => {
   });
   const { handleBlur, handleChange, handleSubmit, values } = formik;
   return (
-    <Container>
-      <Row>
-        <Col className="col-md-6 py-5">
+    <Container fluid className="h-100">
+      <Row className="justify-content-center align-content-center h-100">
+        <Col xs={12} md={8} xxl={5} className="mt-5">
           <div className="pb-lg-5">
             <Card className="shadow-sm">
-              <Card.Body>
+              <Card.Body className="p-lg-4 p-xl-5">
                 <h1 className="mb-4 fw-light">{t('signUp.pageHeader')}</h1>
                 <div className="pt-lg-3">
                   <Form onSubmit={handleSubmit}>
@@ -68,6 +74,7 @@ export const SignUp = () => {
                         {t('signUp.email')} <span>*</span>
                       </FormLabel>
                       <FormControl
+                        ref={inputRef}
                         type="text"
                         autoFocus="autofocus"
                         name="email"
@@ -119,7 +126,13 @@ export const SignUp = () => {
                         value={values.confirmPassword}
                       />
                     </div>
-                    <Button type="submit">{t('signUp.register')}</Button>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      className="w-100 mt-4"
+                    >
+                      {t('signUp.register')}
+                    </Button>
                   </Form>
                 </div>
               </Card.Body>

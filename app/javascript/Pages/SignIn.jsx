@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 
 export function SignIn() {
+  const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -30,7 +35,7 @@ export function SignIn() {
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={8} xxl={6}>
+        <Col xs={12} md={8} xxl={5} className="mt-5">
           <Card className="shadow-sm">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">Вход</h1>
@@ -48,6 +53,7 @@ export function SignIn() {
                       autoComplete="email"
                       required
                       isInvalid={authFailed}
+                      ref={inputRef}
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
@@ -70,14 +76,14 @@ export function SignIn() {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <div className="text-end my-3">
-                    <a className="text-decoration-none small" href="/">
+                    <a className="text-decoration-none small" href="remind_password">
                       Не помню пароль
                     </a>
                   </div>
                   <Button
                     type="submit"
                     variant="primary"
-                    className="w-100 btn-primary"
+                    className="w-100"
                     data-disable-with="Войти"
                   >
                     Войти

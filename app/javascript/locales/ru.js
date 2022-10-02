@@ -11,6 +11,16 @@ const ruLocales = {
       confirmUserPassword: 'Подтверждение пароля',
       register: 'Зарегистрироваться',
     },
+    remindPass: {
+      pageHeader: 'Забыли пароль?',
+      emailValidation: 'Неправильный email',
+      email: 'Электронная почта',
+      reset: 'Восстановить пароль',
+      signUpHeader: 'Нет аккаунта? ',
+      signUp: 'Создать бесплатный аккаунт',
+      signInHeader: 'Уже есть аккаунт? ',
+      signIn: 'Войти',
+    }
   },
 };
 
