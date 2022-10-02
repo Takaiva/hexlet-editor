@@ -35,7 +35,7 @@ export function SignIn() {
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={8} xxl={6}>
+        <Col xs={12} md={8} xxl={5} className="mt-5">
           <Card className="shadow-sm">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">Вход</h1>

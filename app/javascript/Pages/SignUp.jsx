@@ -62,7 +62,7 @@ export const SignUp = () => {
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={8} xxl={6}>
+        <Col xs={12} md={8} xxl={5} className="mt-5">
           <div className="pb-lg-5">
             <Card className="shadow-sm">
               <Card.Body className="p-lg-4 p-xl-5">
