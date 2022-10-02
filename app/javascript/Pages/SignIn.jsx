@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 
 export function SignIn() {
+  const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -48,6 +53,7 @@ export function SignIn() {
                       autoComplete="email"
                       required
                       isInvalid={authFailed}
+                      ref={inputRef}
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
