@@ -1,8 +1,7 @@
 import React from 'react';
-import getRoutes from '../routes.js';
+import routes from '../routes.js';
 
 export function About() {
-  const { aboutPagePath } = getRoutes();
 
   return (
     <>
@@ -60,7 +59,7 @@ export function About() {
           <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pt-3">
             <div className="col d-flex flex-column mb-2">
               <h3 className="h3 pb-2 border-bottom">© ООО “Хекслет Рус”</h3>
-              <a className="text-secondary" href={aboutPagePath}>
+              <a className="text-secondary" href={routes.aboutPagePath()}>
                 О проекте
               </a>
               <a

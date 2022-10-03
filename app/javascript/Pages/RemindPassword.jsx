@@ -4,12 +4,11 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { Container, Card, Col, Row, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import getRoutes from '../routes.js';
+import routes from '../routes.js';
 
 export const RemindPassword = () => {
   const inputRef = useRef();
   const { t } = useTranslation();
-  const { loginPagePath, signUpPagePath } = getRoutes();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -67,11 +66,11 @@ export const RemindPassword = () => {
               <div className="py-lg-2">
                 <div className="small">
                   <span className="text-muted">{t('remindPass.signUpHeader')}</span>
-                  <a className="link-dark" href={signUpPagePath}>{t('remindPass.signUp')}</a>
+                  <a className="link-dark" href={routes.signUpPagePath()}>{t('remindPass.signUp')}</a>
                 </div>
                 <div className="small">
                   <span className="text-muted">{t('remindPass.signInHeader')}</span>
-                  <a className="link-dark" href={loginPagePath}>{t('remindPass.signIn')}</a>
+                  <a className="link-dark" href={routes.loginPagePath()}>{t('remindPass.signIn')}</a>
                 </div>
               </div>
             </Card.Footer>

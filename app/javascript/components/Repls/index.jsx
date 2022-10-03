@@ -6,16 +6,15 @@ import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { actions } from '../../slices';
 import { db } from './db.js';
 import { useNavigate } from 'react-router-dom';
-import getRoutes from '../../routes.js';
+import routes from '../../routes.js';
 
 export const Repls = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { homePagePath } = getRoutes();
 
   const openTerminal = (code) => () => {
     dispatch(actions.updateCode(code)); // далее роутинг на App
-    navigate(homePagePath);
+    navigate(routes.homePagePath());
   };
 
   return (
