@@ -9,7 +9,7 @@ import { initReactI18next } from 'react-i18next';
 import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './slices';
 import resources from './locales/locales.js';
-import RoutesInit from './RoutesInit';
+import AppRoutes from './AppRoutes.jsx';
 import { Navbar } from './components/Navbar.jsx';
 
 export default async () => {
@@ -29,7 +29,7 @@ export default async () => {
     <Provider store={store}>
       <BrowserRouter>
         <Navbar />
-        <RoutesInit />
+        <AppRoutes />
       </BrowserRouter>
     </Provider>,
     rootNode,

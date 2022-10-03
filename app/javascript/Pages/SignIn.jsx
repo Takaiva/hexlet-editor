@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
+import routes from '../routes.js';
 
 export function SignIn() {
   const inputRef = useRef();
@@ -76,7 +77,7 @@ export function SignIn() {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <div className="text-end my-3">
-                    <a className="text-decoration-none small" href="remind_password">
+                    <a className="text-decoration-none small" href={routes.remindPassPagePath()}>
                       Не помню пароль
                     </a>
                   </div>
@@ -94,7 +95,7 @@ export function SignIn() {
             <Card.Footer className="border-top-0 text-center py-4">
               <div className="py-lg-2">
                 <span className="text-muted">Нет аккаунта? </span>
-                <a className="link-dark" href="/">
+                <a className="link-dark" href={routes.signUpPagePath()}>
                   Создать новый аккаунт
                 </a>
               </div>
