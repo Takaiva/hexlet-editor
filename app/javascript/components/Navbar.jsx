@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import getRoutes from '../routes.js';
 
 export function Navbar() {
   const [menuStatus, setMenuStatus] = useState(false);
+  const {
+    homePagePath,
+    replsPagePath,
+    aboutPagePath,
+    loginPagePath,
+    signUpPagePath,
+  } = getRoutes();
 
   return (
     <>
@@ -30,12 +38,12 @@ export function Navbar() {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <a className="nav-link active" aria-current="page" href={homePagePath}>
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/repls">
+                <a className="nav-link active" aria-current="page" href={replsPagePath}>
                   My repls
                 </a>
               </li>
@@ -53,18 +61,18 @@ export function Navbar() {
             >
               <span className="navbar-toggler-icon" />
             </button>
-            <a className="navbar-brand" aria-hidden="true" href="/">
+            <a className="navbar-brand" aria-hidden="true" href={homePagePath}>
               Editor
             </a>
           </div>
           <div className="d-flex justify-content-end">
-            <a className="nav-link px-3" href="about">
+            <a className="nav-link px-3" href={aboutPagePath}>
               About
             </a>
-            <a className="nav-link px-3" href="login">
+            <a className="nav-link px-3" href={loginPagePath}>
               Sign in
             </a>
-            <a className="nav-link px-3" href="signup">
+            <a className="nav-link px-3" href={signUpPagePath}>
               Sign up
             </a>
           </div>
