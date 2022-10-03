@@ -6,6 +6,7 @@ import { SignUp } from './Pages/SignUp.jsx';
 import { SignIn } from './Pages/SignIn.jsx';
 import { About } from './Pages/About.jsx';
 import { RemindPassword } from './Pages/RemindPassword.jsx';
+import { Repls } from './components/Repls';
 
 function RoutesInit() {
   return (
@@ -16,6 +17,7 @@ function RoutesInit() {
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<SignIn />} />
       <Route path="remind_password" element={<RemindPassword />} />
+      <Route path="repls" element={<Repls />} />
       <Route path="*" element={<div>Page Not Found</div>} />
     </Routes>
   );
