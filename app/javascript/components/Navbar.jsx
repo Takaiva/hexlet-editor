@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import routes from '../routes.js';
+import { useAuth } from '../hooks/';
 
 export function Navbar() {
   const [menuStatus, setMenuStatus] = useState(false);
-
+  const auth = useAuth();
   return (
     <>
       {menuStatus && (
@@ -35,11 +36,13 @@ export function Navbar() {
                   Home
                 </a>
               </li>
+              {auth.isLoggedIn &&
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href={routes.replsPagePath()}>
                   My repls
                 </a>
               </li>
+              }
             </ul>
           </div>
         </div>
@@ -59,15 +62,33 @@ export function Navbar() {
             </a>
           </div>
           <div className="d-flex justify-content-end">
+            {auth.isLoggedIn &&
+            <a className='nav-link px-3' href={routes.profilePagePath()}>
+              Profile
+            </a>
+            }
             <a className="nav-link px-3" href={routes.aboutPagePath()}>
               About
             </a>
-            <a className="nav-link px-3" href={routes.loginPagePath()}>
+            {auth.isLoggedIn &&
+            <a
+              className='nav-link px-3'
+              href={routes.homePagePath()}
+              onClick={async () => await auth.logout()}
+            >
+              Log out
+            </a>
+            }
+            {!auth.isLoggedIn &&
+            <a className='nav-link px-3' href={routes.loginPagePath()}>
               Sign in
             </a>
-            <a className="nav-link px-3" href={routes.signUpPagePath()}>
+            }
+            {!auth.isLoggedIn &&
+            <a className='nav-link px-3' href={routes.signUpPagePath()}>
               Sign up
             </a>
+            }
           </div>
         </div>
       </nav>
