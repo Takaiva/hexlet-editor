@@ -15,7 +15,7 @@ export const RemindPassword = () => {
   },[]);
 
   const emailValidation = yup.object().shape({
-    email: yup.string().email(t('remindPass.emailValidation')),
+    email: yup.string().email(t('remindPass.validation.correctEmail')),
   });
 
   const formik = useFormik({
@@ -30,16 +30,16 @@ export const RemindPassword = () => {
 
   const { handleBlur, handleChange, handleSubmit, values } = formik;
   return (
-    <Container fluid className="h-100">
+    <Container className="h-100">
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={8} xxl={5} className="mt-5">
+        <Col xs={12} md={6} xxl={5} className="mt-5">
           <Card className="shadow-sm">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">{t('remindPass.pageHeader')}</h1>
               <div className="pt-lg-3">
                 <Form onSubmit={handleSubmit} noValidate>
                   <Form.Group className="mb-4">
-                    <Form.Label htmlFor="email">{t('remindPass.email')}</Form.Label>
+                    <Form.Label htmlFor="email">{t('remindPass.emailLabel')}</Form.Label>
                     <Form.Control
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -55,22 +55,22 @@ export const RemindPassword = () => {
                   <Button
                     type="submit"
                     variant="primary"
-                    className="w-100"
+                    className="w-100 pb-2 pt-2"
                   >
-                    {t('remindPass.reset')}
+                    {t('remindPass.resetButton')}
                   </Button>
                 </Form>
               </div>
             </Card.Body>
-            <Card.Footer className="border-top-0 text-center py-4">
+            <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
-                <div className="small">
-                  <span className="text-muted">{t('remindPass.signUpHeader')}</span>
-                  <a className="link-dark" href={routes.signUpPagePath()}>{t('remindPass.signUp')}</a>
+                <div>
+                  <span className="text-muted">{t('remindPass.footer.signUpHeader')}</span>
+                  <a className="link-dark" href={routes.signUpPagePath()}>{t('remindPass.footer.signUp')}</a>
                 </div>
-                <div className="small">
-                  <span className="text-muted">{t('remindPass.signInHeader')}</span>
-                  <a className="link-dark" href={routes.loginPagePath()}>{t('remindPass.signIn')}</a>
+                <div>
+                  <span className="text-muted">{t('remindPass.footer.signInHeader')}</span>
+                  <a className="link-dark" href={routes.loginPagePath()}>{t('remindPass.footer.signIn')}</a>
                 </div>
               </div>
             </Card.Footer>
