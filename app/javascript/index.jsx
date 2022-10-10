@@ -11,11 +11,12 @@ import { rootReducer } from './slices';
 import resources from './locales/locales.js';
 import AppRoutes from './AppRoutes.jsx';
 import { Navbar } from './components/Navbar.jsx';
+import AuthProvider from './providers/AuthProvider.jsx';
 
 export default async () => {
-  const defaultlanguage = 'ru';
+  const defaultLanguage = 'ru';
   await i18next.use(initReactI18next).init({
-    lng: defaultlanguage,
+    lng: defaultLanguage,
     debug: false,
     resources,
   });
@@ -28,8 +29,10 @@ export default async () => {
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
-        <Navbar />
-        <AppRoutes />
+        <AuthProvider>
+          <Navbar />
+          <AppRoutes />
+        </AuthProvider>
       </BrowserRouter>
     </Provider>,
     rootNode,
