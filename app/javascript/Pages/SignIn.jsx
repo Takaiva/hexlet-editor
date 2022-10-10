@@ -4,10 +4,15 @@ import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import routes from '../routes.js';
+import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 export function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -19,11 +24,13 @@ export function SignIn() {
       password: '',
     },
     onSubmit: (values) => {
+      console.log(values);
       setAuthFailed(false);
       const data = axios
-        .post('api/login', values)
+        .post(routes.loginPath(), values)
         .then((response) => {
           return response.data;
+          navigate(routes.homePagePath());
         })
         .catch((err) => {
           setAuthFailed(true);
@@ -34,16 +41,16 @@ export function SignIn() {
   });
 
   return (
-    <Container fluid className="h-100">
+    <Container className="h-100">
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={8} xxl={5} className="mt-5">
+        <Col xs={12} md={6} xxl={5} className="mt-5">
           <Card className="shadow-sm">
             <Card.Body className="p-lg-4 p-xl-5">
-              <h1 className="mb-4 fw-light">Вход</h1>
+              <h1 className="mb-4 fw-light">{t('signIn.pageHeader')}</h1>
               <div className="pt-lg-3">
                 <Form onSubmit={formik.handleSubmit} noValidate>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="email">Электронная почта</Form.Label>
+                  <Form.Group className="mb-2">
+                    <Form.Label htmlFor="email">{t('signIn.emailLabel')}</Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.email}
@@ -57,8 +64,8 @@ export function SignIn() {
                       ref={inputRef}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password">Пароль</Form.Label>
+                  <Form.Group className="mb-2">
+                    <Form.Label htmlFor="password">{t('signIn.passwordLabel')}</Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.password}
@@ -78,25 +85,25 @@ export function SignIn() {
                   </Form.Group>
                   <div className="text-end my-3">
                     <a className="text-decoration-none small" href={routes.remindPassPagePath()}>
-                      Не помню пароль
+                      {t('signIn.remindPass')}
                     </a>
                   </div>
                   <Button
                     type="submit"
                     variant="primary"
-                    className="w-100"
+                    className="w-100 pb-2 pt-2"
                     data-disable-with="Войти"
                   >
-                    Войти
+                    {t('signIn.loginButton')}
                   </Button>
                 </Form>
               </div>
             </Card.Body>
-            <Card.Footer className="border-top-0 text-center py-4">
+            <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
-                <span className="text-muted">Нет аккаунта? </span>
+                <span className="text-muted">{t('signIn.footer.signUpHeader')}</span>
                 <a className="link-dark" href={routes.signUpPagePath()}>
-                  Создать новый аккаунт
+                  {t('signIn.footer.signUp')}
                 </a>
               </div>
             </Card.Footer>
