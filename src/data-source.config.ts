@@ -1,5 +1,7 @@
 import { DataSourceOptions } from 'typeorm';
 import { config } from 'dotenv';
+import { Users } from './entities/user.entity';
+import { Snippets } from './entities/snippet.entity';
 import { migration1663236009774 } from './migrations/1663236009774-migration';
 
 export default (): DataSourceOptions => {
@@ -21,7 +23,7 @@ export default (): DataSourceOptions => {
       return {
         type: 'sqlite',
         database: 'runit.sqlite',
-        entities: [`${__dirname}/entities/*.entity.{ts,js}`],
+        entities: [Users, Snippets],
         migrations: [migration1663236009774],
       };
   }

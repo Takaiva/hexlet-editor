@@ -9,7 +9,10 @@ export class migration1663236009774 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'integer',
+            isGenerated: true,
+            generatedIdentity: 'ALWAYS',
+            generationStrategy: 'increment',
             isNullable: false,
             isPrimary: true,
           },
@@ -52,7 +55,10 @@ export class migration1663236009774 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'integer',
+            isGenerated: true,
+            generatedIdentity: 'ALWAYS',
+            generationStrategy: 'increment',
             isNullable: false,
             isPrimary: true,
           },
