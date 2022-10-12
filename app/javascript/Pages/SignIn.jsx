@@ -5,7 +5,6 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import routes from '../routes.js';
 import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 
 export function SignIn() {
@@ -23,20 +22,28 @@ export function SignIn() {
       email: '',
       password: '',
     },
-    onSubmit: (values) => {
-      console.log(values);
-      setAuthFailed(false);
-      const data = axios
-        .post(routes.loginPath(), values)
-        .then((response) => {
-          return response.data;
-          navigate(routes.homePagePath());
-        })
-        .catch((err) => {
+    onSubmit: async (values, actions) => {
+      try {
+        actions.setSubmitting(true);
+        const response = await axios.post(routes.loginPath(), values);
+        setAuthFailed(false);
+        actions.setSubmitting(false);
+        navigate(routes.homePagePath());
+        return response.data;
+      } catch (err) {
+        if (!err.isAxiosError) {
+          console.log(t('errors.unknown'));
+          throw err;
+        }
+        if (err.response?.status === 401) {
           setAuthFailed(true);
-          return err;
-        });
-      return data;
+          inputRef.current.select();
+        } else {
+          console.log(t('errors.network'));
+          throw err;
+        }
+        actions.setSubmitting(false);
+      }
     },
   });
 

@@ -24,7 +24,6 @@ export const SignUp = () => {
   const inputRef = useRef();
   const { t } = useTranslation();
   const [regFailed, setRegFailed] = useState(false);
-  const auth = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,35 +63,26 @@ export const SignUp = () => {
       confirmPassword: '',
     },
     validationSchema: signUpValidation,
-    onSubmit: (values, actions) => {
-      actions.setSubmitting(true);
-      axios.post(routes.usersPath(),
-        {
-          name: values.name,
-          email: values.email,
-          password: values.password,
-          confirmPassword: values.confirmPassword,
-        })
-        .then((response) => {
-          console.log(response.data);
-          auth.logIn(response.data);
-          navigate(routes.homePagePath());
-          actions.setSubmitting(false);
-        })
-        .catch((error) => {
-          if (!error.isAxiosError) {
-            console.log(t('errors.unknown'));
-            throw error;
-          }
-          if (error.response.status === 409) {
-            setRegFailed(true);
-            inputRef.current.select();
-          } else {
-            console.log(t('errors.network'));
-            throw error;
-          }
-          actions.setSubmitting(false);
-        });
+    onSubmit: async (values, actions) => {
+      try {
+        actions.setSubmitting(true);
+        await axios.post(routes.usersPath(), values);
+        actions.setSubmitting(false);
+        navigate(routes.homePagePath());
+      } catch (err) {
+        if (!err.isAxiosError) {
+          console.log(t('errors.unknown'));
+          throw err;
+        }
+        if (err.response?.status === 409) {
+          setRegFailed(true);
+          inputRef.current.select();
+        } else {
+          console.log(t('errors.network'));
+          throw err;
+        }
+        actions.setSubmitting(false);
+      }
     },
   });
   return (
