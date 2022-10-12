@@ -53,7 +53,7 @@ export function Profile() {
             {t('profile.email')} {/* userdata.email */}
           </h3>
           <div>
-            <Button>{t('profile.editProfileButton')} {/* add edit tool */}</Button>
+            <Button>{t('profile.editProfileButton')} {/* TODO: add edit tool */}</Button>
             <Button>
               {t('profile.copyProfileButton')} {/* TODO: add ability to copy user profile link */}
             </Button>
