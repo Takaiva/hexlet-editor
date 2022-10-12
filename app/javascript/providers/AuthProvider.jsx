@@ -11,13 +11,13 @@ function AuthProvider({ children }) {
       setLoggedIn(false);
   };
 
-  useEffect(() => {
-   /* const fetchAuthData = async () => {
-      const response = await axios.get('api/checkAuth'); // boolean: проверка на авторизированность
+/*  useEffect(() => {
+    const fetchAuthData = async () => {
+      const response = await axios.get('api/checkAuth'); // boolean: check auth
       setLoggedIn(response.data);
-    }*/
-    // fetchAuthData();
-  }, []);
+    }
+    fetchAuthData();
+  }, []);*/
 
   return (
     <AuthContext.Provider
