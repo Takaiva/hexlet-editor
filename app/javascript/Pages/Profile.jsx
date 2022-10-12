@@ -42,8 +42,10 @@ export function Profile() {
           </div>
           <h2 className="my-2">
             {t('profile.username')} {/* userdata.username */}
-            {t('profile.createdAt')} {/* userdata.created_at */}
           </h2>
+          <h3 className="my-2">
+            {t('profile.createdAt')} {/* userdata.created_at */}
+          </h3>
           <h3 className="my-2">
             {t('profile.userId')} {/* userdata.userId */}
           </h3>
