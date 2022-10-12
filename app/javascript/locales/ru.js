@@ -18,7 +18,7 @@ const ruLocales = {
         usernameLength: 'От 3 до 20 символов',
         passwordLength: 'от 8 до 30 символов',
         confirmPassword: 'Пароли должны совпадать',
-      }
+      },
     },
     remindPass: {
       pageHeader: 'Забыли пароль?',
@@ -32,7 +32,7 @@ const ruLocales = {
       },
       validation: {
         correctEmail: 'Некорректный email',
-      }
+      },
     },
     signIn: {
       pageHeader: 'Вход',
@@ -43,12 +43,33 @@ const ruLocales = {
       footer: {
         signUpHeader: 'Нет аккаунта? ',
         signUp: 'Создать бесплатный аккаунт',
-      }
+      },
+    },
+    profile: {
+      replsHeader: 'Repls',
+      username: 'Username:',
+      createdAt: 'Created at:',
+      userId: 'UserId:',
+      email: 'Email:',
+      editProfileButton: 'Edit',
+      copyProfileButton: 'Copy profile link',
+      openReplButton: 'Open repls',
+    },
+    navbar: {
+      mainLabel: 'Editor',
+      menu: 'Menu',
+      home: 'Home',
+      myRepls: 'My repls',
+      profile: 'Profile',
+      about: 'About',
+      logout: 'Log out',
+      signIn: 'Sign in',
+      signUp: 'Sign up',
     },
     errors: {
       unknown: 'Неизвестная ошибка',
       network: 'Ошибка сети',
-    }
+    },
   },
 };
 
