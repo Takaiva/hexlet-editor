@@ -38,7 +38,7 @@ export function Navbar() {
                   {t('navbar.home')}
                 </a>
               </li>
-              <li className="nav-item"> {/* add if logged in */}
+              <li className="nav-item"> {/* TODO: add if logged in */}
                 <a className="nav-link active" aria-current="page" href={routes.replsPagePath()}>
                   {t('navbar.myRepls')}
                 </a>
