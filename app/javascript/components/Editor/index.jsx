@@ -18,7 +18,6 @@ export const MonacoEditor = () => {
 
   return (
     <Editor
-      height="410px"
       defaultLanguage={language}
       theme="vs-dark"
       defaultValue={code}
