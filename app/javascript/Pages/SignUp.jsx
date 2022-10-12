@@ -5,18 +5,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Row,
-} from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../hooks/'
-
 import axios from 'axios';
+import { useAuth } from '../hooks';
 
 import routes from '../routes.js';
 
@@ -39,7 +31,10 @@ export const SignUp = () => {
       .matches(/^[A-Za-z ]*$/, t('signUp.validation.correctUsername'))
       .typeError()
       .required(t('signUp.validation.requiredField')),
-    email: yup.string().email(t('signUp.validation.correctEmail')).required(t('signUp.validation.requiredField')),
+    email: yup
+      .string()
+      .email(t('signUp.validation.correctEmail'))
+      .required(t('signUp.validation.requiredField')),
     password: yup
       .string()
       .trim()
@@ -95,26 +90,34 @@ export const SignUp = () => {
               <div className="pt-lg-3">
                 <Form onSubmit={formik.handleSubmit} noValidate>
                   <Form.Group className="mb-2">
-                    <Form.Label htmlFor="email">{t('signUp.emailLabel')}</Form.Label>
+                    <Form.Label htmlFor="email">
+                      {t('signUp.emailLabel')}
+                    </Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.email}
                       onBlur={formik.handleBlur}
                       className="form-input"
                       name="email"
-                      isInvalid={(formik.touched['email'] && formik.errors['email']) || regFailed}
+                      isInvalid={
+                        (formik.touched.email && formik.errors.email) ||
+                        regFailed
+                      }
                       id="email"
                       autoComplete="email"
                       required
                       ref={inputRef}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {(formik.touched['email'] && formik.errors['email']) || regFailed}
+                      {(formik.touched.email && formik.errors.email) ||
+                        regFailed}
                     </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className="mb-2">
-                    <Form.Label htmlFor="name">{t('signUp.usernameLabel')}</Form.Label>
+                    <Form.Label htmlFor="name">
+                      {t('signUp.usernameLabel')}
+                    </Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.name}
@@ -124,33 +127,44 @@ export const SignUp = () => {
                       id="name"
                       autoComplete="username"
                       required
-                      isInvalid={(formik.touched['name'] && formik.errors['name']) || regFailed}
+                      isInvalid={
+                        (formik.touched.name && formik.errors.name) || regFailed
+                      }
                     />
                     <Form.Control.Feedback type="invalid">
-                       {formik.errors['name'] ? formik.errors['name'] : regFailed}
+                      {formik.errors.name ? formik.errors.name : regFailed}
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                    <Form.Group className="mb-2">
-                      <Form.Label htmlFor="password">{t('signUp.passwordLabel')}</Form.Label>
-                      <Form.Control
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                        onBlur={formik.handleBlur}
-                        type="password"
-                        className="form-input"
-                        name="password"
-                        id="password"
-                        autoComplete="new-password"
-                        required
-                        isInvalid={(formik.touched['password'] && formik.errors['password']) || regFailed}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {formik.errors['password'] ? formik.errors['password'] : regFailed}
-                      </Form.Control.Feedback>
-                    </Form.Group>
                   <Form.Group className="mb-2">
-                    <Form.Label htmlFor="confirmPassword">{t('signUp.confirmPasswordLabel')}</Form.Label>
+                    <Form.Label htmlFor="password">
+                      {t('signUp.passwordLabel')}
+                    </Form.Label>
+                    <Form.Control
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                      onBlur={formik.handleBlur}
+                      type="password"
+                      className="form-input"
+                      name="password"
+                      id="password"
+                      autoComplete="new-password"
+                      required
+                      isInvalid={
+                        (formik.touched.password && formik.errors.password) ||
+                        regFailed
+                      }
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.password
+                        ? formik.errors.password
+                        : regFailed}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group className="mb-2">
+                    <Form.Label htmlFor="confirmPassword">
+                      {t('signUp.confirmPasswordLabel')}
+                    </Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.confirmPassword}
@@ -161,11 +175,17 @@ export const SignUp = () => {
                       id="confirmPassword"
                       autoComplete="new-password"
                       required
-                      isInvalid={(formik.touched['confirmPassword'] && formik.errors['confirmPassword']) || regFailed}
+                      isInvalid={
+                        (formik.touched.confirmPassword &&
+                          formik.errors.confirmPassword) ||
+                        regFailed
+                      }
                     />
                     <Form.Control.Feedback type="invalid">
-                        {formik.errors['confirmPassword'] ? formik.errors['confirmPassword'] : regFailed}
-                      </Form.Control.Feedback>
+                      {formik.errors.confirmPassword
+                        ? formik.errors.confirmPassword
+                        : regFailed}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Button
                     type="submit"
@@ -181,8 +201,12 @@ export const SignUp = () => {
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
                 <div>
-                  <span className="text-muted">{t('signUp.footer.signInHeader')}</span>
-                  <a className="link-dark" href={routes.loginPagePath()}>{t('signUp.footer.signIn')}</a>
+                  <span className="text-muted">
+                    {t('signUp.footer.signInHeader')}
+                  </span>
+                  <a className="link-dark" href={routes.loginPagePath()}>
+                    {t('signUp.footer.signIn')}
+                  </a>
                 </div>
               </div>
             </Card.Footer>

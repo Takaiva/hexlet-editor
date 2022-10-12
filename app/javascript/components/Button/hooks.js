@@ -21,15 +21,15 @@ export const useButton = () => {
   );
   const update = async (id) => {
     // const data = await getData();
-    const response = await axios.put(routes.updateSnippetPath(id), {code});
+    const response = await axios.put(routes.updateSnippetPath(id), { code });
     return response;
-/*    if (!data) {
+    /*    if (!data) {
       return 'Please signin for save snippets';
     }
     const response = await axios.put(`api/snippets/${data}`, {
       code,
     });
-    return response;*/
+    return response; */
   };
   const disabled = codeExecutionState === 'executing';
 

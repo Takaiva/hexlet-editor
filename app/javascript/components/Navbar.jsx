@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import routes from '../routes.js';
-import { useAuth } from '../hooks/';
 import { useTranslation } from 'react-i18next';
+import routes from '../routes.js';
+import { useAuth } from '../hooks';
 
 export function Navbar() {
   const [menuStatus, setMenuStatus] = useState(false);
@@ -34,12 +34,22 @@ export function Navbar() {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href={routes.homePagePath()}>
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href={routes.homePagePath()}
+                >
                   {t('navbar.home')}
                 </a>
               </li>
-              <li className="nav-item"> {/* TODO: add if logged in */}
-                <a className="nav-link active" aria-current="page" href={routes.replsPagePath()}>
+              <li className="nav-item">
+                {' '}
+                {/* TODO: add if logged in */}
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href={routes.replsPagePath()}
+                >
                   {t('navbar.myRepls')}
                 </a>
               </li>
@@ -57,38 +67,42 @@ export function Navbar() {
             >
               <span className="navbar-toggler-icon" />
             </button>
-            <a className="navbar-brand" aria-hidden="true" href={routes.homePagePath()}>
+            <a
+              className="navbar-brand"
+              aria-hidden="true"
+              href={routes.homePagePath()}
+            >
               {t('navbar.mainLabel')}
             </a>
           </div>
           <div className="d-flex justify-content-end">
-            {auth.isLoggedIn &&
-            <a className='nav-link px-3' href={routes.profilePagePath()}>
-              {t('navbar.profile')}
-            </a>
-            }
+            {auth.isLoggedIn && (
+              <a className="nav-link px-3" href={routes.profilePagePath()}>
+                {t('navbar.profile')}
+              </a>
+            )}
             <a className="nav-link px-3" href={routes.aboutPagePath()}>
               {t('navbar.about')}
             </a>
-            {auth.isLoggedIn &&
-            <a
-              className='nav-link px-3'
-              href={routes.homePagePath()}
-              onClick={async () => await auth.logout()}
-            >
-              {t('navbar.logout')}
-            </a>
-            }
-            {!auth.isLoggedIn &&
-            <a className='nav-link px-3' href={routes.loginPagePath()}>
-              {t('navbar.signIn')}
-            </a>
-            }
-            {!auth.isLoggedIn &&
-            <a className='nav-link px-3' href={routes.signUpPagePath()}>
-              {t('navbar.signUp')}
-            </a>
-            }
+            {auth.isLoggedIn && (
+              <a
+                className="nav-link px-3"
+                href={routes.homePagePath()}
+                onClick={async () => await auth.logout()}
+              >
+                {t('navbar.logout')}
+              </a>
+            )}
+            {!auth.isLoggedIn && (
+              <a className="nav-link px-3" href={routes.loginPagePath()}>
+                {t('navbar.signIn')}
+              </a>
+            )}
+            {!auth.isLoggedIn && (
+              <a className="nav-link px-3" href={routes.signUpPagePath()}>
+                {t('navbar.signUp')}
+              </a>
+            )}
           </div>
         </div>
       </nav>

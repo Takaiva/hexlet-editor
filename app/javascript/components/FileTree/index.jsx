@@ -25,10 +25,10 @@ const Documents = ({ fileTreeData }) => {
   });
 };
 
-export const FileTree = ({ fileTreeData }) => {
+export function FileTree({ fileTreeData }) {
   return (
     <div className="list-group w-100 px-2">
       <Documents fileTreeData={fileTreeData} />
     </div>
   );
-};
+}

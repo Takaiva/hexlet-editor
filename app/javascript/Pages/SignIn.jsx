@@ -3,9 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
-import routes from '../routes.js';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import routes from '../routes.js';
 
 export function SignIn() {
   const inputRef = useRef();
@@ -43,6 +43,7 @@ export function SignIn() {
           throw err;
         }
         actions.setSubmitting(false);
+        return values;
       }
     },
   });
@@ -57,7 +58,9 @@ export function SignIn() {
               <div className="pt-lg-3">
                 <Form onSubmit={formik.handleSubmit} noValidate>
                   <Form.Group className="mb-2">
-                    <Form.Label htmlFor="email">{t('signIn.emailLabel')}</Form.Label>
+                    <Form.Label htmlFor="email">
+                      {t('signIn.emailLabel')}
+                    </Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.email}
@@ -72,7 +75,9 @@ export function SignIn() {
                     />
                   </Form.Group>
                   <Form.Group className="mb-2">
-                    <Form.Label htmlFor="password">{t('signIn.passwordLabel')}</Form.Label>
+                    <Form.Label htmlFor="password">
+                      {t('signIn.passwordLabel')}
+                    </Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
                       value={formik.values.password}
@@ -91,7 +96,10 @@ export function SignIn() {
                     </Form.Control.Feedback>
                   </Form.Group>
                   <div className="text-end my-3">
-                    <a className="text-decoration-none small" href={routes.remindPassPagePath()}>
+                    <a
+                      className="text-decoration-none small"
+                      href={routes.remindPassPagePath()}
+                    >
                       {t('signIn.remindPass')}
                     </a>
                   </div>
@@ -108,7 +116,9 @@ export function SignIn() {
             </Card.Body>
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
-                <span className="text-muted">{t('signIn.footer.signUpHeader')}</span>
+                <span className="text-muted">
+                  {t('signIn.footer.signUpHeader')}
+                </span>
                 <a className="link-dark" href={routes.signUpPagePath()}>
                   {t('signIn.footer.signUp')}
                 </a>

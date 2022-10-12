@@ -29,7 +29,6 @@ export const getData = async () => {
   return data.data.id;
 };
 
-
 export const { actions } = slice;
 
 export default slice.reducer;

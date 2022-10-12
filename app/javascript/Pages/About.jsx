@@ -2,14 +2,13 @@ import React from 'react';
 import routes from '../routes.js';
 
 export function About() {
-
   return (
     <>
       <div className="container mt-5">
         <h3>Информация о проекте</h3>
         <p>
-          <strong>Runit</strong> — среда для написания и исполнения
-          кода, которую будем активно использовать на всех платформах Хекслета.
+          <strong>Runit</strong> — среда для написания и исполнения кода,
+          которую будем активно использовать на всех платформах Хекслета.
         </p>
         <p>
           Ближайший аналог — сервис&nbsp;

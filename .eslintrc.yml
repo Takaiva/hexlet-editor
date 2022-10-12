@@ -37,6 +37,7 @@ settings:
         - .ts
 
 rules:
+  import/no-cycle: [2, { maxDepth: 1}]
   import/prefer-default-export: 0
   import/extensions: 0
   react/prop-types: "off"

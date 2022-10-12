@@ -3,7 +3,7 @@ import fileImage from '../../../assets/image/FileTree/file.svg';
 import closeImageDirectory from '../../../assets/image/FileTree/closeDirectory.svg';
 import openImageDirectory from '../../../assets/image/FileTree/openDirectory.svg';
 
-export const DocumentImage = ({ type, isShow = false }) => {
+export function DocumentImage({ type, isShow = false }) {
   if (type === 'file') {
     return <img src={fileImage} alt="" height="20" width="17" />;
   }
@@ -12,4 +12,4 @@ export const DocumentImage = ({ type, isShow = false }) => {
   ) : (
     <img src={closeImageDirectory} alt="" height="20" width="25" />
   );
-};
+}
