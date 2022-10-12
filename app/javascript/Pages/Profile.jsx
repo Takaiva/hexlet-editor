@@ -6,15 +6,17 @@ import axios from 'axios';
 import routes from '../routes.js';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export function Profile() {
   const [snippets, setSnippets] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   //const [userdata, setUserdata] = useState([]);
 
   const openTerminal = (code) => () => {
-    dispatch(actions.updateCode(code)); // далее роутинг на App
+    dispatch(actions.updateCode(code));
     navigate(routes.homePagePath());
   };
 
@@ -34,39 +36,39 @@ export function Profile() {
           <div>
             <img
               className="rounded-circle"
-              src="#" /* Добавить ссылку */
-              alt="User avatar" /* добавить дефолтную картинку пользователя */
+              src="#" /* add link */
+              alt="User avatar" /* add default user pic */
             />
           </div>
           <h2 className="my-2">
-            Username {/* user.username */}
-            CreatedAt {/* user.created_at */}
+            {t('profile.username')} {/* userdata.username */}
+            {t('profile.createdAt')} {/* userdata.created_at */}
           </h2>
           <h3 className="my-2">
-            UserId {/* user.userId */}
+            {t('profile.userId')} {/* userdata.userId */}
           </h3>
           <h3 className="my-2">
-            UserEmail {/* user.email */}
+            {t('profile.email')} {/* userdata.email */}
           </h3>
           <div>
-            <Button>Edit {/* Добавить возможность редактирования */}</Button>
+            <Button>{t('profile.editProfileButton')} {/* add edit tool */}</Button>
             <Button>
-              Copy profile link {/* Добавить копирование ссылки профиля */}
+              {t('profile.copyProfileButton')} {/* add ability to copy user profile link */}
             </Button>
           </div>
         </Col>
         <Col xs={12} md={9} my={4} className="p-0 h-100">
           <div className="d-flex flex-column h-100">
-            <h2>Repls</h2>
+            <h2>{t('profile.replsHeader')}</h2>
             <Row xs={1} md={2} className="g-4">
             {snippets.map(({ id, name, code }) => (
               <Col xs lg="3" key={id}>
                 <Card border="primary">
                   <Card.Header>{name}</Card.Header>
                   <Card.Body>
-                    <Card.Text>Изображения нет</Card.Text>
+                    <Card.Text>{/* add a snapshot for snippet */}</Card.Text>
                     <Button variant="primary" onClick={openTerminal(code)}>
-                      Open repl
+                      {t('profile.openReplButton')}
                     </Button>
                   </Card.Body>
                 </Card>
