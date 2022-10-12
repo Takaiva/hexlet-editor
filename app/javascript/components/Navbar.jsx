@@ -38,13 +38,11 @@ export function Navbar() {
                   {t('navbar.home')}
                 </a>
               </li>
-              {auth.isLoggedIn &&
-              <li className="nav-item">
+              <li className="nav-item"> {/* add if logged in */}
                 <a className="nav-link active" aria-current="page" href={routes.replsPagePath()}>
                   {t('navbar.myRepls')}
                 </a>
               </li>
-              }
             </ul>
           </div>
         </div>
