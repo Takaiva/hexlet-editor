@@ -13,7 +13,7 @@ export function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  //const [userdata, setUserdata] = useState([]);
+  // const [userdata, setUserdata] = useState([]);
 
   const openTerminal = (code) => () => {
     dispatch(actions.updateCode(code));
