@@ -21,7 +21,7 @@ export function Profile() {
   };
 
   useEffect(() => {
-    const fetchUserSnippets = async() => {
+    const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
       setSnippets(response.data);
       // setUserdata(response.data.user); set user data
@@ -36,8 +36,8 @@ export function Profile() {
           <div>
             <img
               className="rounded-circle"
-              src="#" /* add link */
-              alt="User avatar" /* add default user pic */
+              src="#" /* TODO: add link */
+              alt="User avatar" /* TODO: add default user pic */
             />
           </div>
           <h2 className="my-2">
@@ -55,7 +55,7 @@ export function Profile() {
           <div>
             <Button>{t('profile.editProfileButton')} {/* add edit tool */}</Button>
             <Button>
-              {t('profile.copyProfileButton')} {/* add ability to copy user profile link */}
+              {t('profile.copyProfileButton')} {/* TODO: add ability to copy user profile link */}
             </Button>
           </div>
         </Col>
@@ -68,7 +68,7 @@ export function Profile() {
                 <Card border="primary">
                   <Card.Header>{name}</Card.Header>
                   <Card.Body>
-                    <Card.Text>{/* add a snapshot for snippet */}</Card.Text>
+                    <Card.Text>{/* TODO: add a snapshot for snippet */}</Card.Text>
                     <Button variant="primary" onClick={openTerminal(code)}>
                       {t('profile.openReplButton')}
                     </Button>
