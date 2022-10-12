@@ -20,7 +20,7 @@ const isAuthenticated = async () => {
   return response.user;
 };
 
-const getData = async () => {
+export const getData = async () => {
   const isAuth = await isAuthenticated();
   if (!isAuth) {
     return null;
@@ -29,7 +29,6 @@ const getData = async () => {
   return data.data.id;
 };
 
-export const dataId = getData();
 
 export const { actions } = slice;
 
