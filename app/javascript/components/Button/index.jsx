@@ -7,10 +7,13 @@ export const Button = memo(() => {
   const { onClick, disabled, update } = useButton();
   const [currentSnippetId, setCurrentSnippetId] = useState();
 
-  useEffect(async () => {
-    const response = await axios.post(routes.createSnippetPath(), { code: '' });
-    setCurrentSnippetId(response.data.id);
-  }, [])
+  useEffect( () => {
+    const createSnippet = async () => {
+      const response = await axios.post(routes.createSnippetPath(), { code: '' });
+      setCurrentSnippetId(response.data.id);
+    }
+    createSnippet()
+  }, []);
 
   return (
     <div className="text-center">
