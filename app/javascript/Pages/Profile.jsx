@@ -45,7 +45,7 @@ export function Profile() {
             {t('profile.username')} {userdata.name}
           </h2>
           <h3 className="my-2">
-            {t('profile.createdAt')}{' '}
+            {t('profile.createdAt')}
             {Moment(userdata.created_at).format('DD-MM-YYYY')}
           </h3>
           <h3 className="my-2">
