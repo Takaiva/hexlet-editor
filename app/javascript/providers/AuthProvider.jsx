@@ -8,7 +8,7 @@ function AuthProvider({ children }) {
 
   const logOut = async () => {
       await axios.post(routes.logoutPath());
-      setLoggedIn(null);
+      setLoggedIn(false);
   };
 
   useEffect(() => {
