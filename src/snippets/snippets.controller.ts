@@ -12,7 +12,7 @@ import {
   UseFilters,
   UseGuards,
 } from '@nestjs/common';
-import { User } from '../users/users.decorator';
+import { User as UserDecorator } from '../users/users.decorator';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippet } from './interfaces/snippets.interface';
@@ -21,6 +21,7 @@ import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ValidationPipe } from './validation/validation.pipe';
+import { User } from '../users/interfaces/users.interface';
 
 @Controller('snippets')
 @UseFilters(new HttpExceptionFilter())
@@ -40,11 +41,11 @@ export class SnippetsController {
   @Post()
   @UseGuards(JwtAuthGuard)
   async create(
-    @User('id') userId: number,
+    @UserDecorator('user') user: User,
     @Body(new ValidationPipe())
     createSnippetDto: CreateSnippetDto,
   ) {
-    return this.snippetsService.create(createSnippetDto, userId);
+    return this.snippetsService.create(createSnippetDto, user);
   }
 
   @Put(':id')

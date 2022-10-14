@@ -8,6 +8,7 @@ import { Users } from '../entities/user.entity';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippets } from '../entities/snippet.entity';
+import { User } from '../users/interfaces/users.interface';
 
 @Injectable()
 export class SnippetsService {
@@ -24,7 +25,7 @@ export class SnippetsService {
 
   async create(
     createSnippetDto: CreateSnippetDto,
-    id: number,
+    { id }: User,
   ): Promise<Snippets> {
     const snippet = new Snippets();
     snippet.user = await this.usersRepository.findOneBy({ id });

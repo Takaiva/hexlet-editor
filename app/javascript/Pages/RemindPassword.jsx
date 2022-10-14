@@ -6,13 +6,13 @@ import { Container, Card, Col, Row, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 
-export const RemindPassword = () => {
+export function RemindPassword() {
   const inputRef = useRef();
   const { t } = useTranslation();
 
   useEffect(() => {
     inputRef.current.focus();
-  },[]);
+  }, []);
 
   const emailValidation = yup.object().shape({
     email: yup.string().email(t('remindPass.validation.correctEmail')),
@@ -39,17 +39,19 @@ export const RemindPassword = () => {
               <div className="pt-lg-3">
                 <Form onSubmit={handleSubmit} noValidate>
                   <Form.Group className="mb-4">
-                    <Form.Label htmlFor="email">{t('remindPass.emailLabel')}</Form.Label>
+                    <Form.Label htmlFor="email">
+                      {t('remindPass.emailLabel')}
+                    </Form.Label>
                     <Form.Control
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                    className="form-input"
-                    name="email"
-                    id="email"
-                    autoComplete="email"
-                    required
-                    ref={inputRef}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      className="form-input"
+                      name="email"
+                      id="email"
+                      autoComplete="email"
+                      required
+                      ref={inputRef}
                     />
                   </Form.Group>
                   <Button
@@ -65,12 +67,20 @@ export const RemindPassword = () => {
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
                 <div>
-                  <span className="text-muted">{t('remindPass.footer.signUpHeader')}</span>
-                  <a className="link-dark" href={routes.signUpPagePath()}>{t('remindPass.footer.signUp')}</a>
+                  <span className="text-muted">
+                    {t('remindPass.footer.signUpHeader')}
+                  </span>
+                  <a className="link-dark" href={routes.signUpPagePath()}>
+                    {t('remindPass.footer.signUp')}
+                  </a>
                 </div>
                 <div>
-                  <span className="text-muted">{t('remindPass.footer.signInHeader')}</span>
-                  <a className="link-dark" href={routes.loginPagePath()}>{t('remindPass.footer.signIn')}</a>
+                  <span className="text-muted">
+                    {t('remindPass.footer.signInHeader')}
+                  </span>
+                  <a className="link-dark" href={routes.loginPagePath()}>
+                    {t('remindPass.footer.signIn')}
+                  </a>
                 </div>
               </div>
             </Card.Footer>
@@ -79,4 +89,4 @@ export const RemindPassword = () => {
       </Row>
     </Container>
   );
-};
+}

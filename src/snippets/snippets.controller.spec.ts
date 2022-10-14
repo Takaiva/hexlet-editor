@@ -55,10 +55,14 @@ describe('SnippetController', () => {
     });
 
     it('should create snippet', async () => {
+      const userData = {
+        id: 3,
+        email: 'test@mail.ru',
+      };
       const createData = { code: 'test' };
       jest.spyOn(snippetsController, 'create');
-      await snippetsController.create(3, createData);
-      expect(snippetsService.create).toHaveBeenCalledWith(createData, 3);
+      await snippetsController.create(userData, createData);
+      expect(snippetsService.create).toHaveBeenCalledWith(createData, userData);
     });
 
     it('should delete snippet', async () => {

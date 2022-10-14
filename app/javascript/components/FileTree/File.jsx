@@ -1,7 +1,7 @@
 import React from 'react';
 import { DocumentImage } from './DocumentImage';
 
-export const File = ({ type, name }) => {
+export function File({ type, name }) {
   return (
     <div className="d-flex flex-wrap w-100 user-select-none">
       <div className="list-group-item list-group-item-action flex-grow-1">
@@ -10,4 +10,4 @@ export const File = ({ type, name }) => {
       </div>
     </div>
   );
-};
+}

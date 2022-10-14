@@ -1,32 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import { actions } from '../slices';
 
 import axios from 'axios';
-import routes from '../routes.js';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import routes from '../routes.js';
+import { actions } from '../slices';
 
 export function Profile() {
   const [snippets, setSnippets] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  // const [userdata, setUserdata] = useState([]);
+  const [userdata, setUserdata] = useState([]);
 
   const openTerminal = (code) => () => {
     dispatch(actions.updateCode(code));
     navigate(routes.homePagePath());
   };
 
+  const parseDate = (date) => {
+    try {
+      return new Intl.DateTimeFormat().format(new Date(date));
+    } catch {
+      return 'date is loading!';
+    }
+  };
+
   useEffect(() => {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
-      setSnippets(response.data);
-      // setUserdata(response.data.user); set user data
-    }
+      setUserdata(response.data.currentUser);
+      setSnippets(response.data.snippets);
+    };
     fetchUserSnippets();
+    parseDate();
   }, []);
 
   return (
@@ -41,21 +50,25 @@ export function Profile() {
             />
           </div>
           <h2 className="my-2">
-            {t('profile.username')} {/* userdata.username */}
+            {t('profile.username')} {userdata.name}
           </h2>
           <h3 className="my-2">
-            {t('profile.createdAt')} {/* userdata.created_at */}
+            {t('profile.createdAt')}
+            {parseDate(userdata.created_at)}
           </h3>
           <h3 className="my-2">
-            {t('profile.userId')} {/* userdata.userId */}
+            {t('profile.userId')} {userdata.id}
           </h3>
           <h3 className="my-2">
-            {t('profile.email')} {/* userdata.email */}
+            {t('profile.email')} {userdata.email}
           </h3>
           <div>
-            <Button>{t('profile.editProfileButton')} {/* TODO: add edit tool */}</Button>
             <Button>
-              {t('profile.copyProfileButton')} {/* TODO: add ability to copy user profile link */}
+              {t('profile.editProfileButton')} {/* TODO: add edit tool */}
+            </Button>
+            <Button>
+              {t('profile.copyProfileButton')}{' '}
+              {/* TODO: add ability to copy user profile link */}
             </Button>
           </div>
         </Col>
@@ -63,19 +76,21 @@ export function Profile() {
           <div className="d-flex flex-column h-100">
             <h2>{t('profile.replsHeader')}</h2>
             <Row xs={1} md={2} className="g-4">
-            {snippets.map(({ id, name, code }) => (
-              <Col xs lg="3" key={id}>
-                <Card border="primary">
-                  <Card.Header>{name}</Card.Header>
-                  <Card.Body>
-                    <Card.Text>{/* TODO: add a snapshot for snippet */}</Card.Text>
-                    <Button variant="primary" onClick={openTerminal(code)}>
-                      {t('profile.openReplButton')}
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
+              {snippets.map(({ id, name, code }) => (
+                <Col xs lg="3" key={id}>
+                  <Card border="primary">
+                    <Card.Header>{name}</Card.Header>
+                    <Card.Body>
+                      <Card.Text>
+                        {/* TODO: add a snapshot for snippet */}
+                      </Card.Text>
+                      <Button variant="primary" onClick={openTerminal(code)}>
+                        {t('profile.openReplButton')}
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
             </Row>
           </div>
         </Col>

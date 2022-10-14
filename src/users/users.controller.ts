@@ -19,8 +19,8 @@ import { User } from './interfaces/users.interface';
 import { UsersService } from './users.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
-import { ValidationPipe } from './validation/validation.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { HttpValidationFilter } from './exceptions/validation-exception.filter';
 
 @Controller('users')
 @UseFilters(new HttpExceptionFilter())
@@ -34,8 +34,8 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async getProfile(@UserDecorator('id', new ParseIntPipe()) id: number) {
-    return this.usersService.getData(id);
+  async getProfile(@UserDecorator('user') user: User) {
+    return this.usersService.getData(user);
   }
 
   @Get(':id')
@@ -44,7 +44,8 @@ export class UsersController {
   }
 
   @Post()
-  async create(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
+  @UseFilters(new HttpValidationFilter())
+  async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 

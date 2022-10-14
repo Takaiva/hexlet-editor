@@ -8,6 +8,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Users } from '../entities/user.entity';
 import { Snippets } from '../entities/snippet.entity';
+import { User } from './interfaces/users.interface';
 
 @Injectable()
 export class UsersService {
@@ -47,16 +48,18 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  async getData(userId: number): Promise<Snippets[]> {
-    return this.snippetsRepository.find({
+  async getData({ id }: User): Promise<any> {
+    const currentUser = await this.usersRepository.findOneBy({ id });
+    const snippets = await this.snippetsRepository.find({
       relations: {
         user: true,
       },
       where: {
         user: {
-          id: userId,
+          id,
         },
       },
     });
+    return { currentUser, snippets };
   }
 }
