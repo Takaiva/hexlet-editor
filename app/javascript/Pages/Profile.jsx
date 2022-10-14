@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
 import axios from 'axios';
-import Moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,13 +20,22 @@ export function Profile() {
     navigate(routes.homePagePath());
   };
 
+  const parseDate = (date) => {
+    try {
+      return new Intl.DateTimeFormat().format(new Date(date));
+    } catch {
+      return 'date is loading!';
+    }
+  };
+
   useEffect(() => {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
-      setSnippets(response.data.snippets);
       setUserdata(response.data.currentUser);
+      setSnippets(response.data.snippets);
     };
     fetchUserSnippets();
+    parseDate();
   }, []);
 
   return (
@@ -46,7 +54,7 @@ export function Profile() {
           </h2>
           <h3 className="my-2">
             {t('profile.createdAt')}
-            {Moment(userdata.created_at).format('DD-MM-YYYY')}
+            {parseDate(userdata.created_at)}
           </h3>
           <h3 className="my-2">
             {t('profile.userId')} {userdata.id}

@@ -66,7 +66,6 @@
     "json5": "^1.0.1",
     "locate-path": "^2.0.0",
     "mini-css-extract-plugin": "^2.6.0",
-    "moment": "^2.29.4",
     "ms": "^2.0.0",
     "node-gyp": "^9.0.0",
     "node-pty": "^0.10.1",
